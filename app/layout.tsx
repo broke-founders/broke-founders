@@ -19,11 +19,7 @@ export const metadata: Metadata = {
   description: "Where skilled builders find each other. No salaries. No equity negotiation. Declare your scope, build together, split what it earns.",
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>{children}</body>
