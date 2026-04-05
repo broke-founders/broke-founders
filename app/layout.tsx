@@ -1,23 +1,23 @@
 import type { Metadata } from "next"
-import { Instrument_Serif, DM_Mono } from "next/font/google"
+import { Playfair_Display, Instrument_Sans } from "next/font/google"
 import "./globals.css"
 
-const serif = Instrument_Serif({
+const serif = Playfair_Display({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["400","600","700","800","900"],
+  style: ["normal","italic"],
   variable: "--font-serif",
 })
 
-const mono = DM_Mono({
+const sans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-mono",
+  weight: ["300","400","500","600"],
+  variable: "--font-sans",
 })
 
 export const metadata: Metadata = {
-  title: "Broke Founders",
-  description: "For builders who are almost there.",
+  title: "Broke Founders — For builders who are almost there",
+  description: "Where skilled builders find each other. No salaries. No equity negotiation. Declare your scope, build together, split what it earns.",
 }
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${serif.variable} ${mono.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   )
