@@ -345,7 +345,7 @@ export default function Home() {
 
         {/* WAITLIST */}
         <section id="join" style={{background:"#0E0C09",padding:"110px 48px"}}>
-          <div style={{maxWidth:"880px",margin:"0 auto"}}>
+          <div style={{maxWidth:"780px"}}>
             <p className="reveal" style={{
               fontFamily:"var(--font-sans)",fontSize:"10px",
               letterSpacing:"0.32em",textTransform:"uppercase",
