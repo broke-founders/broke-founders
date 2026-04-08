@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   if (!raw) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   const session = JSON.parse(raw)
 
-  const { title, problem, originator_stake, graduation_threshold, nodes } = await req.json()
+  const { title, problem, originator_stake, graduation_threshold, github_repo, nodes } = await req.json()
 
   if (!title || !problem || !originator_stake || !nodes?.length) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 })
@@ -35,6 +35,7 @@ export async function POST(req: Request) {
       originator_id: session.id,
       originator_stake,
       graduation_threshold,
+      github_repo,
     })
     .select()
     .single()

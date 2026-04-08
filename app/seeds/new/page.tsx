@@ -28,6 +28,7 @@ const emptyNode = (): Node => ({
 
 export default function NewSeed() {
   const router = useRouter()
+  const [repo, setRepo] = useState("")
   const [step, setStep] = useState(1)
   const [title, setTitle] = useState("")
   const [problem, setProblem] = useState("")
@@ -125,6 +126,8 @@ export default function NewSeed() {
             {textarea({ placeholder:"Who hurts without this. What breaks. Who uses it first.", value:problem, onChange:e=>setProblem(e.target.value) })}
 
             {label("Graduation threshold")}
+            {label("GitHub repository (optional)")}
+            {input({ placeholder:"github.com/your-org/repo", value:repo, onChange:e=>setRepo(e.target.value) })}
             {input({ placeholder:"e.g. 100 paying users, or first ₹10,000 revenue", value:threshold, onChange:e=>setThreshold(e.target.value) })}
 
             <button
