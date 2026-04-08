@@ -98,6 +98,9 @@ export default async function Dashboard() {
         <div style={{display:"flex",gap:"12px"}}>
           <Link href="/seeds/new" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"13px 24px",textDecoration:"none"}}>Float a seed</Link>
           <Link href="/seeds" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",border:"1px solid rgba(14,12,9,0.12)",padding:"13px 24px",textDecoration:"none"}}>Browse seeds</Link>
+<Link href="/chat" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600}}>
+  Feed
+</Link>
         </div>
       </section>
     </main>
