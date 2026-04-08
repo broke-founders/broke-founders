@@ -73,8 +73,7 @@ export default function SeedPage() {
               : <div style={{width:36,height:36,borderRadius:"50%",background:"rgba(14,12,9,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--font-sans)",fontSize:"12px",fontWeight:600,color:"rgba(14,12,9,0.6)"}}>{seed.users?.username?.[0]?.toUpperCase()||"?"}</div>
             }
             <div>
-              <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:600,display:"block"}}>@{seed.users?.username||"unknown"}</span>
-              <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>Originator · {seed.originator_stake}% stake</span>
+<Link href={`/u/${seed.users?.username}`} style={{fontFamily:"var(--font-sans)",fontSize:"14px",fontWeight:700,display:"block",color:"rgba(14,12,9,0.9)",textDecoration:"none"}}>@{seed.users?.username||"unknown"}</Link>              <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>Originator · {seed.originator_stake}% stake</span>
             </div>
           </div>
           {seed.graduation_threshold && (
