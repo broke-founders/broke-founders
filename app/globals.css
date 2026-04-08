@@ -12,6 +12,13 @@
   --faint: rgba(14,12,9,0.08);
 }
 
+:root {
+  --text-strong: rgba(14,12,9,0.9);
+  --text-body: rgba(14,12,9,0.75);
+  --text-meta: rgba(14,12,9,0.55);
+  --text-faint: rgba(14,12,9,0.4);
+}
+
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 
