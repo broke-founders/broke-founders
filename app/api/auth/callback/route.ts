@@ -48,18 +48,18 @@ export async function GET(req: Request) {
   }
 
   // Upsert user in Supabase
-  const { data: user } = await supabase
+    const { data: user, error: upsertError } = await supabase
     .from("users")
     .upsert({
       github_id: String(githubUser.id),
-      github_username: githubUser.login,
-      github_avatar: githubUser.avatar_url,
+      username: githubUser.login,
+      avatar_url: githubUser.avatar_url,
       email,
       name: githubUser.name || githubUser.login,
     }, { onConflict: "github_id" })
     .select()
     .single()
-
+    
   // Set session cookie
   const response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/dashboard`)
   response.cookies.set("bf_user", JSON.stringify({
