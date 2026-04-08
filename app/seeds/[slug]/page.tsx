@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import { RequestButton } from "./RequestButton"
 
 export default function SeedPage() {
   const params = useParams()
@@ -52,9 +53,9 @@ export default function SeedPage() {
         <p style={{fontFamily:"var(--font-sans)",fontSize:"15px",lineHeight:1.9,color:"rgba(14,12,9,0.55)",maxWidth:"600px",marginBottom:"48px"}}>{seed.problem}</p>
 
         <div style={{display:"flex",alignItems:"center",gap:"12px",padding:"20px 0",borderTop:"1px solid var(--faint)",borderBottom:"1px solid var(--faint)",marginBottom:"48px"}}>
-          {seed.users?.github_avatar && <img src={seed.users.github_avatar} alt="" width={32} height={32} style={{borderRadius:"50%"}}/>}
+          {seed.users?.avatar_url && <img src={seed.users.avatar_url} alt="" width={32} height={32} style={{borderRadius:"50%"}}/>}
           <div>
-            <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",fontWeight:600,display:"block"}}>{seed.users?.name || seed.users?.github_username}</span>
+            <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",fontWeight:600,display:"block"}}>{seed.users?.name || seed.users?.username}</span>
             <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.4)"}}>Originator · {seed.originator_stake}% stake</span>
           </div>
           {seed.graduation_threshold && (
@@ -98,9 +99,7 @@ export default function SeedPage() {
                 </div>
               )}
               {node.status === "open" && (
-                <button style={{marginTop:"8px",fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",border:"none",padding:"10px 20px",cursor:"pointer"}}>
-                  Request this node →
-                </button>
+                <RequestButton nodeId={node.id} seedId={seed.id} />
               )}
             </div>
           ))}
