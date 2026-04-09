@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import { RequestButton } from "./RequestButton"
+import { AgreementModal } from "@/components/AgreementModal"
+import { CommitLog } from "@/components/CommitLog"
 
 export default function SeedPage() {
   const params = useParams()
@@ -14,6 +16,7 @@ export default function SeedPage() {
   const [nodes, setNodes] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
+  const [showAgreement, setShowAgreement] = useState(false)
 
   useEffect(() => {
     fetch(`/api/seeds/${slug}`)
@@ -45,6 +48,7 @@ export default function SeedPage() {
 
   const totalNodeSlices = nodes.reduce((s: number, n: any) => s + n.slice, 0)
   const openNodes = nodes.filter(n => n.status === "open")
+  const allNodesFilled = nodes.length > 0 && nodes.every(n => n.status === "active")
 
   return (
     <main style={{minHeight:"100vh",background:"var(--paper)"}}>
@@ -54,6 +58,11 @@ export default function SeedPage() {
           <button onClick={copyLink} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:copied?"var(--red)":"rgba(14,12,9,0.6)",background:"transparent",border:"1px solid rgba(14,12,9,0.12)",padding:"8px 16px",cursor:"pointer"}}>
             {copied ? "Copied ✓" : "Share"}
           </button>
+          {allNodesFilled && (
+            <button onClick={() => setShowAgreement(true)} className="btn btn-outline" style={{fontSize:"11px",padding:"8px 16px"}}>
+              View Agreement
+            </button>
+          )}
           <Link href="/dashboard" style={{fontFamily:"var(--font-sans)",fontSize:"12px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.72)",textDecoration:"none",fontWeight:600}}>Dashboard</Link>
         </div>
       </nav>
@@ -134,6 +143,7 @@ export default function SeedPage() {
           ))}
         </div>
 	<SeedUpdates seedId={seed.id} isOriginator={false} />
+	{seed.github_repo && <CommitLog seedSlug={slug} />}
 
 	{/* Seed chat */}
 <div style={{marginTop:"64px"}}>
@@ -143,6 +153,7 @@ export default function SeedPage() {
   <Chat seedId={seed.id} title={`${seed.title} team`} />
 </div>
       </section>
+      {showAgreement && <AgreementModal seedSlug={slug} onClose={() => setShowAgreement(false)} />}
     </main>
   )
 }

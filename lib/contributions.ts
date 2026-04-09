@@ -1,12 +1,13 @@
 import { supabase } from "./supabase"
 
-type Action = 
+type Action =
   | "seed_created"
   | "node_joined"
   | "node_completed"
   | "node_dropped"
   | "seed_graduated"
   | "seed_fossilized"
+  | "seed_commit"
 
 const POINTS: Record<Action, number> = {
   seed_created: 10,
@@ -15,6 +16,7 @@ const POINTS: Record<Action, number> = {
   node_dropped: 0,
   seed_graduated: 50,
   seed_fossilized: 0,
+  seed_commit: 2,
 }
 
 const ACHIEVEMENTS: Record<string, { action: Action, check: (count: number) => boolean, label: string }[]> = {
