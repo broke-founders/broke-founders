@@ -269,6 +269,9 @@ export default function Home() {
               onMouseLeave={e=>(e.currentTarget.style.color="rgba(14,12,9,0.35)")}>
               Sign in →
             </a>
+            <a href="/worth-building" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.45)",textDecoration:"none"}}>
+            Worth building
+            </a>
           </div>
         </footer>
 
