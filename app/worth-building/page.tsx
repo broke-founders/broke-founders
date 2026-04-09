@@ -1,11 +1,47 @@
+export const dynamic = 'force-dynamic'
+
 import Link from "next/link"
 
 async function getData() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/worth-building`, {
-      next: { revalidate: 3600 }
-    })
-    return res.json()
+    const [hnRes, githubRes] = await Promise.all([
+      fetch("https://hacker-news.firebaseio.com/v0/showstories.json", { next: { revalidate: 3600 } }),
+      fetch("https://api.github.com/search/repositories?q=created:>2026-03-01&sort=stars&order=desc&per_page=6", {
+        headers: { Accept: "application/vnd.github+json" },
+        next: { revalidate: 3600 }
+      })
+    ])
+
+    const hnIds = await hnRes.json()
+    const githubData = await githubRes.json()
+
+    const hnStories = await Promise.all(
+      hnIds.slice(0, 8).map(async (id: number) => {
+        const r = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+        return r.json()
+      })
+    )
+
+    const hn = hnStories
+      .filter((s: any) => s && s.title && s.score > 10)
+      .slice(0, 5)
+      .map((s: any) => ({
+        title: s.title.replace(/^Show HN: /, ""),
+        url: s.url || `https://news.ycombinator.com/item?id=${s.id}`,
+        points: s.score,
+        comments: s.descendants || 0,
+      }))
+
+    const github = (githubData.items || []).slice(0, 5).map((r: any) => ({
+      title: r.name.replace(/-/g, " "),
+      url: r.html_url,
+      points: r.stargazers_count,
+      comments: r.forks_count,
+      description: r.description,
+      language: r.language,
+    }))
+
+    return { hn, github }
   } catch { return { hn: [], github: [] } }
 }
 
@@ -31,7 +67,7 @@ export default async function WorthBuilding() {
           What builders are actually shipping and what is getting traction. Updated every hour from Hacker News and GitHub.
         </p>
 
-        {/* HN Show HN */}
+        {/* HN */}
         <div style={{marginBottom:"64px"}}>
           <div style={{display:"flex",alignItems:"center",gap:"12px",marginBottom:"24px"}}>
             <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",fontWeight:600}}>
@@ -40,14 +76,12 @@ export default async function WorthBuilding() {
             <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(192,57,43,0.7)",border:"1px solid rgba(192,57,43,0.3)",padding:"2px 8px",fontWeight:600}}>Live</span>
           </div>
           <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
-            {data.hn?.length === 0 && (
-              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"24px 0"}}>Loading signals...</p>
+            {data.hn.length === 0 && (
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"24px 0"}}>No signals right now.</p>
             )}
-            {data.hn?.map((item: any, i: number) => (
+            {data.hn.map((item: any, i: number) => (
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none",color:"inherit",display:"block"}}>
-                <div style={{padding:"20px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center",transition:"padding-left 0.25s cubic-bezier(0.16,1,0.3,1)"}}
-                  onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.paddingLeft="8px"}}
-                  onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.paddingLeft="0"}}>
+                <div style={{padding:"20px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
                   <div>
                     <span style={{fontFamily:"var(--font-serif)",fontSize:"18px",fontWeight:700,display:"block",marginBottom:"4px",color:"rgba(14,12,9,0.92)"}}>{item.title}</span>
                     <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)"}}>
@@ -61,7 +95,7 @@ export default async function WorthBuilding() {
           </div>
         </div>
 
-        {/* GitHub Trending */}
+        {/* GitHub */}
         <div>
           <div style={{display:"flex",alignItems:"center",gap:"12px",marginBottom:"24px"}}>
             <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",fontWeight:600}}>
@@ -70,18 +104,16 @@ export default async function WorthBuilding() {
             <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(61,186,122,0.8)",border:"1px solid rgba(61,186,122,0.3)",padding:"2px 8px",fontWeight:600}}>Live</span>
           </div>
           <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
-            {data.github?.length === 0 && (
-              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"24px 0"}}>Loading signals...</p>
+            {data.github.length === 0 && (
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"24px 0"}}>No signals right now.</p>
             )}
-            {data.github?.map((item: any, i: number) => (
+            {data.github.map((item: any, i: number) => (
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none",color:"inherit",display:"block"}}>
-                <div style={{padding:"20px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center",transition:"padding-left 0.25s cubic-bezier(0.16,1,0.3,1)"}}
-                  onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.paddingLeft="8px"}}
-                  onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.paddingLeft="0"}}>
+                <div style={{padding:"20px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
                   <div>
                     <span style={{fontFamily:"var(--font-serif)",fontSize:"18px",fontWeight:700,display:"block",marginBottom:"4px",color:"rgba(14,12,9,0.92)"}}>{item.title}</span>
                     {item.description && (
-                      <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.55)",display:"block",marginBottom:"4px"}}>{item.description?.slice(0,100)}{item.description?.length>100?"...":""}</span>
+                      <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.55)",display:"block",marginBottom:"4px"}}>{item.description.slice(0,100)}{item.description.length>100?"...":""}</span>
                     )}
                     <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)"}}>
                       ★ {item.points.toLocaleString()} · {item.language || "Unknown"}
