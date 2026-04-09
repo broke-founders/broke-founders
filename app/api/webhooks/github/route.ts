@@ -20,13 +20,7 @@ export async function POST(req: Request) {
   const event = req.headers.get("x-github-event")
 
   if (!verifySignature(body, sig)) {
-    const secret = process.env.GITHUB_WEBHOOK_SECRET
-    return NextResponse.json({
-      error: "Invalid signature",
-      secret_set: !!secret,
-      secret_length: secret?.length ?? 0,
-      sig_received: sig?.slice(0, 20) + "…",
-    }, { status: 401 })
+    return NextResponse.json({ error: "Invalid signature" }, { status: 401 })
   }
 
   // Only handle push events
