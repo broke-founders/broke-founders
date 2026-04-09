@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { supabase } from "@/lib/supabase"
 import { cookies } from "next/headers"
+import { logContribution } from "@/lib/contributions"
 
 export async function GET() {
   const cookieStore = await cookies()
@@ -41,7 +42,7 @@ export async function PATCH(req: Request) {
   if (action === "approved") {
     const { data: request } = await supabase
       .from("node_requests")
-      .select("node_id, requester_id")
+      .select("node_id, requester_id, seed_id")
       .eq("id", request_id)
       .single()
 
@@ -50,6 +51,13 @@ export async function PATCH(req: Request) {
         .from("nodes")
         .update({ status: "active", contributor_id: request.requester_id })
         .eq("id", request.node_id)
+
+      await logContribution({
+        user_id: request.requester_id,
+        seed_id: request.seed_id,
+        node_id: request.node_id,
+        action: "node_joined",
+      })
     }
   }
 

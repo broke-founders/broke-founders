@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { supabase } from "@/lib/supabase"
-import { getSession } from "@/lib/session"
 import { cookies } from "next/headers"
+import { logContribution } from "@/lib/contributions"
 
 function slugify(text: string) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
@@ -53,6 +53,13 @@ export async function POST(req: Request) {
   }))
 
   await supabase.from("nodes").insert(nodeRows)
+
+  await logContribution({
+    user_id: session.id,
+    seed_id: seed.id,
+    action: "seed_created",
+    meta: { title: seed.title }
+  })
 
   return NextResponse.json({ success: true, slug: seed.slug })
 }

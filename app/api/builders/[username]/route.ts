@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { supabase } from "@/lib/supabase"
+import { getUserScore, getLevel } from "@/lib/contributions"
 
 export async function GET(
   req: Request,
@@ -27,7 +28,29 @@ export async function GET(
     .eq("contributor_id", user.id)
     .eq("status", "active")
 
-  const score = (seeds?.length || 0) * 10 + (nodes?.length || 0) * 15
+  const { data: contributions } = await supabase
+    .from("contributions")
+    .select("id, action, points, created_at, meta, seeds(title, slug)")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .limit(20)
 
-  return NextResponse.json({ user, seeds: seeds || [], nodes: nodes || [], score })
+  const { data: achievements } = await supabase
+    .from("achievements")
+    .select("achievement, earned_at")
+    .eq("user_id", user.id)
+    .order("earned_at", { ascending: false })
+
+  const score = await getUserScore(user.id)
+  const level = getLevel(score)
+
+  return NextResponse.json({
+    user,
+    seeds: seeds || [],
+    nodes: nodes || [],
+    contributions: contributions || [],
+    achievements: achievements || [],
+    score,
+    level,
+  })
 }
