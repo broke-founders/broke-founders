@@ -7,6 +7,7 @@ import {
   CATEGORIES, BACKGROUNDS, CURRENT_STATE, TARGET_MARKET,
   getSuggestions, adjustSlicesForStake, type SuggestedNode
 } from "@/lib/wizard"
+import { PaymentGate } from "@/components/PaymentGate"
 
 type Node = SuggestedNode & { custom?: boolean }
 
@@ -41,6 +42,8 @@ export default function NewSeed() {
 
   const [status, setStatus] = useState<"idle"|"loading"|"error">("idle")
   const [error, setError] = useState("")
+  const [pendingSeedId, setPendingSeedId] = useState<string | null>(null)
+  const [showPayment, setShowPayment] = useState(false)
 
   const totalNodeSlices = nodes.reduce((s, n) => s + (n.slice || 0), 0)
   const remaining = 100 - stake - totalNodeSlices
@@ -72,6 +75,7 @@ export default function NewSeed() {
     if (remaining !== 0) { setError(`Slices must total 100%. You have ${remaining}% remaining.`); return }
     setStatus("loading")
     setError("")
+
     const res = await fetch("/api/seeds", {
       method: "POST",
       headers: {"Content-Type":"application/json"},
@@ -89,8 +93,23 @@ export default function NewSeed() {
       })
     })
     const data = await res.json()
-    if (res.ok) router.push(`/seeds/${data.slug}`)
-    else { setError(data.error || "Something went wrong"); setStatus("error") }
+    if (!res.ok) { setError(data.error || "Something went wrong"); setStatus("error"); return }
+
+    // Check if payment is required (second seed onwards)
+    const countRes = await fetch("/api/seeds/mine/count")
+    const countData = await countRes.json()
+
+    if (countData.count > 1) {
+      // This seed was just created — check if it needs payment
+      if (!data.paid) {
+        setPendingSeedId(data.id)
+        setShowPayment(true)
+        setStatus("idle")
+        return
+      }
+    }
+
+    router.push(`/seeds/${data.slug}`)
   }
 
   // Style helpers
@@ -307,6 +326,14 @@ export default function NewSeed() {
           </div>
         )}
       </section>
+
+      {showPayment && pendingSeedId && (
+        <PaymentGate
+          seedId={pendingSeedId}
+          onSuccess={() => { setShowPayment(false); router.push(`/seeds/${pendingSeedId}`) }}
+          onCancel={() => { setShowPayment(false); setStatus("idle") }}
+        />
+      )}
     </main>
   )
 }

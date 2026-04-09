@@ -147,13 +147,39 @@ export default async function AdminPage() {
           </div>
         </div>
 
+        {/* Graduated seeds */}
+        {stats.graduated > 0 && (
+          <div style={{marginBottom:"64px"}}>
+            <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"#7BAE7F",marginBottom:"24px",fontWeight:600}}>
+              Graduated — {stats.graduated}
+            </p>
+            <div style={{borderTop:"1px solid rgba(123,174,127,0.2)"}}>
+              {seeds?.filter(s => s.stage === "grove").map(seed => (
+                <div key={seed.id} style={{padding:"16px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto auto auto",gap:"16px",alignItems:"center"}}>
+                  <div>
+                    <Link href={`/seeds/${seed.slug}`} style={{fontFamily:"var(--font-serif)",fontSize:"17px",fontWeight:700,textDecoration:"none",color:"rgba(14,12,9,0.9)",display:"block",marginBottom:"4px"}}>{seed.title}</Link>
+                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)"}}>
+                      by @{(seed.users as any)?.username} · {new Date(seed.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
+                    </span>
+                  </div>
+                  {stageBadge(seed.stage)}
+                  <Link href={`/seeds/${seed.slug}/graduated`} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,color:"rgba(123,174,127,0.9)",textDecoration:"none",border:"1px solid rgba(123,174,127,0.3)",padding:"5px 12px"}}>
+                    View page
+                  </Link>
+                  <Link href={`/seeds/${seed.slug}`} style={{color:"rgba(14,12,9,0.25)",textDecoration:"none",fontSize:"16px"}}>→</Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* All seeds */}
         <div style={{marginBottom:"64px"}}>
           <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>
             All seeds — {stats.total_seeds}
           </p>
           <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
-            {seeds?.map(seed => (
+            {seeds?.filter(s => s.stage !== "grove").map(seed => (
               <div key={seed.id} style={{padding:"16px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto auto",gap:"24px",alignItems:"center"}}>
                 <div>
                   <Link href={`/seeds/${seed.slug}`} style={{fontFamily:"var(--font-serif)",fontSize:"17px",fontWeight:700,textDecoration:"none",color:"rgba(14,12,9,0.9)",display:"block",marginBottom:"4px"}}>{seed.title}</Link>

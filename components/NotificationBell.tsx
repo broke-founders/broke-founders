@@ -21,14 +21,20 @@ type Notification = {
 
 export function NotificationBell({ userId }: { userId: string }) {
   const [notifs, setNotifs] = useState<Notification[]>([])
+  const [dmUnread, setDmUnread] = useState(0)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     fetch("/api/notifications")
       .then(r => r.json())
       .then(d => setNotifs(d.notifications || []))
+
+    fetch("/api/direct-messages")
+      .then(r => r.json())
+      .then(d => setDmUnread(d.unreadCount || 0))
   }, [])
 
+  // Realtime — notifications
   useEffect(() => {
     const channel = supabase
       .channel(`notifications-${userId}`)
@@ -44,7 +50,24 @@ export function NotificationBell({ userId }: { userId: string }) {
     return () => { supabase.removeChannel(channel) }
   }, [userId])
 
-  const unread = notifs.filter(n => !n.read).length
+  // Realtime — incoming DMs
+  useEffect(() => {
+    const channel = supabase
+      .channel(`dm-bell-${userId}`)
+      .on("postgres_changes", {
+        event: "INSERT",
+        schema: "public",
+        table: "direct_messages",
+        filter: `receiver_id=eq.${userId}`,
+      }, () => {
+        setDmUnread(prev => prev + 1)
+      })
+      .subscribe()
+    return () => { supabase.removeChannel(channel) }
+  }, [userId])
+
+  const notifUnread = notifs.filter(n => !n.read).length
+  const totalUnread = notifUnread + dmUnread
 
   async function markRead() {
     await fetch("/api/notifications", { method: "PATCH" })
@@ -54,11 +77,11 @@ export function NotificationBell({ userId }: { userId: string }) {
   return (
     <div style={{position:"relative"}}>
       <button
-        onClick={() => { setOpen(!open); if (!open && unread > 0) markRead() }}
+        onClick={() => { setOpen(!open); if (!open && notifUnread > 0) markRead() }}
         style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.55)",background:"transparent",border:"none",cursor:"pointer",position:"relative",padding:"4px 8px"}}
       >
-        {unread > 0 && (
-          <span style={{position:"absolute",top:0,right:0,width:7,height:7,borderRadius:"50%",background:"var(--red)"}}></span>
+        {totalUnread > 0 && (
+          <span style={{position:"absolute",top:0,right:0,minWidth:7,height:7,borderRadius:"4px",background:"var(--red)"}}></span>
         )}
         ●
       </button>
@@ -68,7 +91,25 @@ export function NotificationBell({ userId }: { userId: string }) {
           <div style={{padding:"14px 16px",borderBottom:"1px solid rgba(14,12,9,0.08)"}}>
             <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.55)"}}>Notifications</span>
           </div>
-          {notifs.length === 0 && (
+
+          {/* Unread DM shortcut */}
+          {dmUnread > 0 && (
+            <Link href="/messages" onClick={() => { setOpen(false); setDmUnread(0) }} style={{textDecoration:"none",color:"inherit",display:"block"}}>
+              <div style={{padding:"14px 16px",borderBottom:"1px solid rgba(14,12,9,0.06)",background:"rgba(14,12,9,0.025)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                <div>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:600,color:"rgba(14,12,9,0.85)",display:"block",marginBottom:"2px"}}>
+                    {dmUnread} unread message{dmUnread > 1 ? "s" : ""}
+                  </span>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)"}}>View in Messages →</span>
+                </div>
+                <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",fontWeight:700,color:"var(--paper)",background:"var(--red)",borderRadius:"50%",width:18,height:18,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  {dmUnread}
+                </span>
+              </div>
+            </Link>
+          )}
+
+          {notifs.length === 0 && dmUnread === 0 && (
             <div style={{padding:"24px 16px",fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)"}}>Nothing yet.</div>
           )}
           {notifs.map(n => (

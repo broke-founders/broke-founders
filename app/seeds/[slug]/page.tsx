@@ -17,6 +17,9 @@ export default function SeedPage() {
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
   const [showAgreement, setShowAgreement] = useState(false)
+  const [me, setMe] = useState<any>(null)
+  const [graduating, setGraduating] = useState(false)
+  const [confirmGraduate, setConfirmGraduate] = useState(false)
 
   useEffect(() => {
     fetch(`/api/seeds/${slug}`)
@@ -26,7 +29,18 @@ export default function SeedPage() {
         setNodes(data.nodes)
         setLoading(false)
       })
+    fetch("/api/me").then(r => r.json()).then(d => setMe(d.user))
   }, [slug])
+
+  async function graduate() {
+    setGraduating(true)
+    const res = await fetch(`/api/seeds/${slug}/graduate`, { method: "POST" })
+    if (res.ok) {
+      setSeed((prev: any) => ({ ...prev, stage: "grove" }))
+    }
+    setGraduating(false)
+    setConfirmGraduate(false)
+  }
 
   function copyLink() {
     navigator.clipboard.writeText(window.location.href)
@@ -62,6 +76,26 @@ export default function SeedPage() {
             <button onClick={() => setShowAgreement(true)} className="btn btn-outline" style={{fontSize:"11px",padding:"8px 16px"}}>
               View Agreement
             </button>
+          )}
+          {me && seed.originator_id === me.id && ["sprout","shoot"].includes(seed.stage) && (
+            confirmGraduate ? (
+              <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
+                <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.6)"}}>Graduate this seed?</span>
+                <button onClick={graduate} disabled={graduating} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",border:"none",padding:"8px 16px",cursor:"pointer"}}>
+                  {graduating ? "…" : "Confirm"}
+                </button>
+                <button onClick={() => setConfirmGraduate(false)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)",background:"transparent",border:"none",cursor:"pointer"}}>Cancel</button>
+              </div>
+            ) : (
+              <button onClick={() => setConfirmGraduate(true)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(61,186,122,0.9)",background:"transparent",border:"1px solid rgba(61,186,122,0.35)",padding:"8px 16px",cursor:"pointer"}}>
+                Graduate →
+              </button>
+            )
+          )}
+          {seed.stage === "grove" && (
+            <Link href={`/seeds/${slug}/graduated`} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(61,186,122,0.9)",textDecoration:"none",border:"1px solid rgba(61,186,122,0.35)",padding:"8px 16px"}}>
+              🌿 Graduated
+            </Link>
           )}
           <Link href="/dashboard" style={{fontFamily:"var(--font-sans)",fontSize:"12px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.72)",textDecoration:"none",fontWeight:600}}>Dashboard</Link>
         </div>

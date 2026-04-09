@@ -2,7 +2,7 @@ import { supabase } from "./supabase"
 
 type NotifyParams = {
   user_id: string
-  type: "node_request"|"node_approved"|"node_rejected"|"seed_message"|"node_dropped"|"seed_graduated"
+  type: "node_request"|"node_approved"|"node_rejected"|"seed_message"|"node_dropped"|"seed_graduated"|"direct_message"
   title: string
   body?: string
   link?: string

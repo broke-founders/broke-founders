@@ -69,10 +69,15 @@ export default function BuilderProfile() {
               Member since {new Date(user.created_at).toLocaleDateString("en-GB",{month:"long",year:"numeric"})}
             </p>
           </div>
-          <div style={{textAlign:"right"}}>
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:"6px",fontWeight:600,color:level?.color||"rgba(14,12,9,0.5)"}}>{level?.title}</p>
-            <p style={{fontFamily:"var(--font-serif)",fontSize:"52px",fontWeight:900,lineHeight:1,color:"rgba(14,12,9,0.9)"}}>{score}</p>
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.4)",marginTop:"4px"}}>points</p>
+          <div style={{textAlign:"right",display:"flex",flexDirection:"column",alignItems:"flex-end",gap:"16px"}}>
+            <div>
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:"6px",fontWeight:600,color:level?.color||"rgba(14,12,9,0.5)"}}>{level?.title}</p>
+              <p style={{fontFamily:"var(--font-serif)",fontSize:"52px",fontWeight:900,lineHeight:1,color:"rgba(14,12,9,0.9)"}}>{score}</p>
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.4)",marginTop:"4px"}}>points</p>
+            </div>
+            <Link href={`/messages/${username}`} className="btn btn-outline" style={{fontSize:"11px",padding:"10px 20px"}}>
+              Message
+            </Link>
           </div>
         </div>
 
