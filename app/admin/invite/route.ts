@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
 import { transporter } from "@/lib/mailer"
-import { getSession } from "@/lib/session"
 import { cookies } from "next/headers"
 
 const ADMIN_USERNAMES = ["horaizontech"]
@@ -16,11 +15,12 @@ export async function POST(req: Request) {
 
   const { email } = await req.json()
 
-  await transporter.sendMail({
-    from: `"Broke Founders" <${process.env.GMAIL_USER}>`,
-    to: email,
-    subject: "Your spot on Broke Founders is ready.",
-    html: `<!DOCTYPE html>
+  try {
+    await transporter.sendMail({
+      from: `"Broke Founders" <${process.env.GMAIL_USER}>`,
+      to: email,
+      subject: "Your spot on Broke Founders is ready.",
+      html: `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"/></head>
 <body style="margin:0;padding:0;background:#F5F1EA;">
@@ -58,7 +58,10 @@ export async function POST(req: Request) {
   </table>
 </body>
 </html>`
-  })
-
-  return NextResponse.json({ success: true })
+    })
+    return NextResponse.json({ success: true })
+  } catch (err) {
+    console.error("Mail error:", err)
+    return NextResponse.json({ error: "Mail failed", detail: String(err) }, { status: 500 })
+  }
 }
