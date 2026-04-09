@@ -16,7 +16,7 @@ type Message = {
   users: { username: string; avatar_url: string; name: string } | null
 }
 
-export function Chat({ seedId, title }: { seedId?: string; title?: string }) {
+export function Chat({ seedId, title, hasSigned = true }: { seedId?: string; title?: string; hasSigned?: boolean }) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [sending, setSending] = useState(false)
@@ -75,6 +75,13 @@ export function Chat({ seedId, title }: { seedId?: string; title?: string }) {
       send()
     }
   }
+
+  if (hasSigned === false) return (
+    <div style={{border:"1px solid rgba(14,12,9,0.1)",padding:"32px",textAlign:"center",height:"180px",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"12px",letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(14,12,9,0.45)",fontWeight:600,marginBottom:"8px"}}>Chat locked</p>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.6)",margin:0}}>Sign the agreement to unlock the workspace.</p>
+    </div>
+  )
 
   return (
     <div style={{display:"flex",flexDirection:"column",height:"520px",border:"1px solid rgba(14,12,9,0.1)",background:"var(--paper)"}}>

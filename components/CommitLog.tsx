@@ -15,10 +15,17 @@ export function CommitLog({ seedSlug }: { seedSlug: string }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/api/seeds/${seedSlug}/activity`)
+    fetch(`/api/seeds/${seedSlug}/commits`)
       .then(r => r.json())
       .then(d => {
-        setCommits(d.commits || [])
+        const mapped = (d.commits || []).map((c: any) => ({
+          sha: (c.meta?.sha || c.id || "").slice(0, 7),
+          message: (c.meta?.message || "").slice(0, 72),
+          author: c.meta?.author || (c.users as any)?.username || "unknown",
+          date: c.meta?.date || c.created_at,
+          url: c.meta?.url || "",
+        }))
+        setCommits(mapped)
         setLoading(false)
       })
   }, [seedSlug])

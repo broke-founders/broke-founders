@@ -20,6 +20,7 @@ export default function SeedPage() {
   const [me, setMe] = useState<any>(null)
   const [graduating, setGraduating] = useState(false)
   const [confirmGraduate, setConfirmGraduate] = useState(false)
+  const [agreementSigned, setAgreementSigned] = useState<boolean | null>(null)
 
   useEffect(() => {
     fetch(`/api/seeds/${slug}`)
@@ -31,6 +32,15 @@ export default function SeedPage() {
       })
     fetch("/api/me").then(r => r.json()).then(d => setMe(d.user))
   }, [slug])
+
+  useEffect(() => {
+    if (!seed || !me) return
+    const isContributor = nodes.some((n: any) => n.contributor_id === me.id)
+    if (!isContributor) { setAgreementSigned(true); return }
+    fetch(`/api/seeds/${slug}/agreement`)
+      .then(r => r.json())
+      .then(d => setAgreementSigned(d.available ? d.currentUserSigned : true))
+  }, [seed, me, nodes, slug])
 
   async function graduate() {
     setGraduating(true)
@@ -191,7 +201,7 @@ export default function SeedPage() {
             </div>
           ))}
         </div>
-	<SeedUpdates seedId={seed.id} isOriginator={false} />
+	<SeedUpdates seedId={seed.id} isOriginator={false} hasSigned={agreementSigned ?? true} />
 	{seed.github_repo && <CommitLog seedSlug={slug} />}
 
 	{/* Seed chat */}
@@ -199,7 +209,7 @@ export default function SeedPage() {
   <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>
     Seed chat
   </p>
-  <Chat seedId={seed.id} title={`${seed.title} team`} />
+  <Chat seedId={seed.id} title={`${seed.title} team`} hasSigned={agreementSigned ?? true} />
 </div>
       </section>
       {showAgreement && <AgreementModal seedSlug={slug} onClose={() => setShowAgreement(false)} />}

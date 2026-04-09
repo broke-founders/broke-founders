@@ -9,7 +9,7 @@ type Update = {
   users: { username: string; avatar_url: string } | null
 }
 
-export function SeedUpdates({ seedId, isOriginator }: { seedId: string; isOriginator: boolean }) {
+export function SeedUpdates({ seedId, isOriginator, hasSigned = true }: { seedId: string; isOriginator: boolean; hasSigned?: boolean }) {
   const [updates, setUpdates] = useState<Update[]>([])
   const [input, setInput] = useState("")
   const [posting, setPosting] = useState(false)
@@ -35,6 +35,13 @@ export function SeedUpdates({ seedId, isOriginator }: { seedId: string; isOrigin
     }
     setPosting(false)
   }
+
+  if (hasSigned === false) return (
+    <div style={{marginTop:"64px",padding:"32px",border:"1px solid rgba(14,12,9,0.1)",textAlign:"center"}}>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"12px",letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(14,12,9,0.45)",fontWeight:600,marginBottom:"8px"}}>Build log locked</p>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.6)",margin:0}}>Sign the agreement to unlock the workspace.</p>
+    </div>
+  )
 
   return (
     <div style={{marginTop:"64px"}}>

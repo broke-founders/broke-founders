@@ -37,13 +37,9 @@ function BinancePay({ seedId, onSuccess }: { seedId: string; onSuccess: () => vo
     if (!polling || !tradeNo) return
 
     pollRef.current = setInterval(async () => {
-      const res = await fetch("/api/payments/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ payment_id: tradeNo, payment_method: "binance", seed_id: seedId }),
-      })
+      const res = await fetch(`/api/payments/status?seed_id=${seedId}`)
       const data = await res.json()
-      if (data.success || data.already_paid) {
+      if (data.paid) {
         clearInterval(pollRef.current!)
         setPolling(false)
         onSuccess()

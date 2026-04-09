@@ -69,16 +69,31 @@ export async function POST(req: Request) {
       .single()
 
     if (user) {
-      await logContribution({
-        user_id: user.id,
-        seed_id: seed.id,
-        action: "seed_commit",
-        meta: {
-          commits: payload.commits?.length ?? 1,
-          ref: payload.ref,
-          message: payload.commits?.[0]?.message ?? "",
-        },
-      })
+      const commits: any[] = payload.commits || []
+      if (commits.length > 0) {
+        for (const commit of commits) {
+          await logContribution({
+            user_id: user.id,
+            seed_id: seed.id,
+            action: "seed_commit",
+            meta: {
+              sha: commit.id,
+              message: commit.message,
+              author: commit.author?.name || pusherUsername,
+              date: commit.timestamp,
+              url: commit.url,
+              ref: payload.ref,
+            },
+          })
+        }
+      } else {
+        await logContribution({
+          user_id: user.id,
+          seed_id: seed.id,
+          action: "seed_commit",
+          meta: { ref: payload.ref, message: "" },
+        })
+      }
     }
   }
 
