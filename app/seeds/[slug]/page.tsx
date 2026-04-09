@@ -1,6 +1,7 @@
 "use client"
 
 import { Chat } from "@/components/Chat"
+import { SeedUpdates } from "@/components/SeedUpdates"
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
@@ -132,6 +133,8 @@ export default function SeedPage() {
             </div>
           ))}
         </div>
+	<SeedUpdates seedId={seed.id} isOriginator={false} />
+
 	{/* Seed chat */}
 <div style={{marginTop:"64px"}}>
   <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>

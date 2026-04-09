@@ -255,6 +255,14 @@ button { cursor: pointer; }
   transform: translateY(0);
 }
 
+/* Mobile nav */
+.nav-mobile-only { display: none; }
+
+@media (max-width: 640px) {
+  .nav-links { display: none !important; }
+  .nav-mobile-only { display: flex !important; }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .nav { padding: 16px 24px; }

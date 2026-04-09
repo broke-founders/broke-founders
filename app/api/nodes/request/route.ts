@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { supabase } from "@/lib/supabase"
 import { transporter } from "@/lib/mailer"
 import { cookies } from "next/headers"
+import { notify } from "@/lib/notify"
 
 export async function POST(req: Request) {
   const cookieStore = await cookies()
@@ -55,6 +56,7 @@ export async function POST(req: Request) {
       to: originator.email,
       subject: `New request for ${node?.role} on ${seed?.title}`,
       html: `<!DOCTYPE html>
+      
 <html>
 <head><meta charset="utf-8"/></head>
 <body style="margin:0;padding:0;background:#F5F1EA;">
@@ -89,6 +91,14 @@ export async function POST(req: Request) {
 </html>`,
     })
   }
+
+  await notify({
+    user_id: seed?.originator_id,
+    type: "node_request",
+    title: `New request for ${node?.role}`,
+    body: `@${session.github_username} wants to join ${seed?.title}`,
+    link: `/seeds/${seed_id}`,
+  })
 
   return NextResponse.json({ success: true })
 }

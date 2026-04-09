@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase"
 import { cookies } from "next/headers"
 import { logContribution } from "@/lib/contributions"
 import { transporter } from "@/lib/mailer"
+import { notify } from "@/lib/notify"
 export async function GET() {
   const cookieStore = await cookies()
   const raw = cookieStore.get("bf_user")?.value
@@ -131,14 +132,14 @@ export async function PATCH(req: Request) {
     .update({ status: action })
     .eq("id", request_id)
 
-  if (action === "approved") {
-    const { data: request } = await supabase
-      .from("node_requests")
-      .select("node_id, requester_id, seed_id")
-      .eq("id", request_id)
-      .single()
+  const { data: request } = await supabase
+    .from("node_requests")
+    .select("node_id, requester_id, seed_id")
+    .eq("id", request_id)
+    .single()
 
-    if (request) {
+  if (request) {
+    if (action === "approved") {
       await supabase
         .from("nodes")
         .update({ status: "active", contributor_id: request.requester_id })
@@ -151,6 +152,14 @@ export async function PATCH(req: Request) {
         action: "node_joined",
       })
     }
+
+    await notify({
+      user_id: request.requester_id,
+      type: action === "approved" ? "node_approved" : "node_rejected",
+      title: action === "approved" ? "Your node request was approved" : "Your node request was not accepted",
+      body: action === "approved" ? "You are now part of the team." : "Keep looking — another seed needs you.",
+      link: `/seeds/${request.seed_id}`,
+    })
   }
 
   return NextResponse.json({ success: true })
