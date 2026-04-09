@@ -1,4 +1,5 @@
 import { ApproveReject } from "./ApproveReject"
+import { ActiveNodes } from "./ActiveNodes"
 import { getSession } from "@/lib/session"
 import { redirect } from "next/navigation"
 import Link from "next/link"
@@ -23,47 +24,48 @@ export default async function Dashboard() {
 
   return (
     <main style={{minHeight:"100vh",background:"var(--paper)"}}>
-      <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"22px 48px",borderBottom:"1px solid var(--faint)"}}>
-        <Link href="/" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600}}>
+      <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"22px 48px",borderBottom:"1px solid rgba(14,12,9,0.1)"}}>
+        <Link href="/" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>
           Broke Founders
         </Link>
         <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
           {session.github_avatar && <img src={session.github_avatar} alt="" width={28} height={28} style={{borderRadius:"50%"}}/>}
-          <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.5)"}}>{session.github_username}</span>
-          <a href="/api/auth/logout" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600}}>Sign out</a>
-          <Link href={`/u/${session.github_username}`} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600}}>
-  My profile
-</Link>
+          <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>{session.github_username}</span>
+          <Link href="/chat" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Feed</Link>
+          <Link href={`/u/${session.github_username}`} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>My profile</Link>
+          <a href="/api/auth/logout" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",textDecoration:"none",fontWeight:600}}>Sign out</a>
         </div>
       </nav>
 
       <section style={{padding:"64px 48px",maxWidth:"900px"}}>
+
         <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.32em",textTransform:"uppercase",color:"var(--red)",marginBottom:"20px",fontWeight:600}}>Dashboard</p>
         <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,56px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"56px"}}>
           Welcome,<br/>
           <em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>{session.name || session.github_username}.</em>
         </h1>
 
-        {/* Pending requests */}
+        <ActiveNodes />
+
         {requests && requests.length > 0 && (
           <div style={{marginBottom:"64px"}}>
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",marginBottom:"24px",fontWeight:600}}>
+            <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>
               Pending requests — {requests.length}
             </p>
-            <div style={{borderTop:"1px solid var(--faint)"}}>
+            <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
               {requests.map((req: any) => (
-                <div key={req.id} style={{padding:"24px 0",borderBottom:"1px solid var(--faint)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
+                <div key={req.id} style={{padding:"24px 0",borderBottom:"1px solid rgba(14,12,9,0.1)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
                   <div>
                     <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:"8px"}}>
                       {req.users?.avatar_url && <img src={req.users.avatar_url} alt="" width={24} height={24} style={{borderRadius:"50%"}}/>}
                       <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:600}}>@{req.users?.username}</span>
-                      <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.4)"}}>wants to join as</span>
+                      <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.55)"}}>wants to join as</span>
                       <span style={{fontFamily:"var(--font-serif)",fontSize:"14px",fontWeight:700}}>{req.nodes?.role}</span>
                     </div>
-                    <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)"}}>
+                    <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.55)"}}>
                       {req.seeds?.title} · {req.nodes?.slice}% equity
                     </p>
-                    {req.message && <p style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.55)",marginTop:"6px",fontStyle:"italic"}}>"{req.message}"</p>}
+                    {req.message && <p style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)",marginTop:"6px",fontStyle:"italic"}}>"{req.message}"</p>}
                   </div>
                   <ApproveReject requestId={req.id} />
                 </div>
@@ -72,21 +74,20 @@ export default async function Dashboard() {
           </div>
         )}
 
-        {/* My seeds */}
         <div style={{marginBottom:"48px"}}>
-          <p style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",marginBottom:"24px",fontWeight:600}}>My seeds</p>
+          <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>My seeds</p>
           {!mySeeds?.length ? (
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.3)"}}>No seeds yet.</p>
+            <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.45)"}}>No seeds yet.</p>
           ) : (
-            <div style={{borderTop:"1px solid var(--faint)"}}>
+            <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
               {mySeeds.map(seed => (
                 <Link key={seed.id} href={`/seeds/${seed.slug}`} style={{textDecoration:"none",color:"inherit"}}>
-                  <div style={{padding:"20px 0",borderBottom:"1px solid var(--faint)",display:"grid",gridTemplateColumns:"1fr auto",alignItems:"center"}}>
+                  <div style={{padding:"20px 0",borderBottom:"1px solid rgba(14,12,9,0.1)",display:"grid",gridTemplateColumns:"1fr auto",alignItems:"center"}}>
                     <div>
-                      <span style={{fontFamily:"var(--font-serif)",fontSize:"18px",fontWeight:700,display:"block"}}>{seed.title}</span>
-                      <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.2em",textTransform:"uppercase",color:"var(--red)",fontWeight:600}}>{seed.stage}</span>
+                      <span style={{fontFamily:"var(--font-serif)",fontSize:"18px",fontWeight:700,display:"block",marginBottom:"4px"}}>{seed.title}</span>
+                      <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"var(--red)",fontWeight:600}}>{seed.stage}</span>
                     </div>
-                    <span style={{color:"rgba(14,12,9,0.2)"}}>→</span>
+                    <span style={{color:"rgba(14,12,9,0.25)"}}>→</span>
                   </div>
                 </Link>
               ))}
@@ -94,14 +95,11 @@ export default async function Dashboard() {
           )}
         </div>
 
-        {/* Actions */}
         <div style={{display:"flex",gap:"12px"}}>
           <Link href="/seeds/new" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"13px 24px",textDecoration:"none"}}>Float a seed</Link>
-          <Link href="/seeds" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",border:"1px solid rgba(14,12,9,0.12)",padding:"13px 24px",textDecoration:"none"}}>Browse seeds</Link>
-<Link href="/chat" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600}}>
-  Feed
-</Link>
+          <Link href="/seeds" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.55)",border:"1px solid rgba(14,12,9,0.15)",padding:"13px 24px",textDecoration:"none"}}>Browse seeds</Link>
         </div>
+
       </section>
     </main>
   )
