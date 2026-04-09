@@ -56,6 +56,7 @@ export async function GET(req: Request) {
       avatar_url: githubUser.avatar_url,
       email,
       name: githubUser.name || githubUser.login,
+      github_token: accessToken,
     }, { onConflict: "github_id" })
     .select()
     .single()
@@ -68,6 +69,7 @@ export async function GET(req: Request) {
     github_avatar: githubUser.avatar_url,
     name: githubUser.name || githubUser.login,
     email,
+    github_token: accessToken,
   }), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

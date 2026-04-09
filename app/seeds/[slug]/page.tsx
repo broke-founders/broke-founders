@@ -121,12 +121,20 @@ export default function SeedPage() {
 <Link href={`/u/${seed.users?.username}`} style={{fontFamily:"var(--font-sans)",fontSize:"14px",fontWeight:700,display:"block",color:"rgba(14,12,9,0.9)",textDecoration:"none"}}>@{seed.users?.username||"unknown"}</Link>              <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>Originator · {seed.originator_stake}% stake</span>
             </div>
           </div>
-          {seed.graduation_threshold && (
+          {seed.graduation_threshold ? (
             <div style={{textAlign:"right"}}>
               <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.72)",display:"block",marginBottom:"4px",fontWeight:600}}>Graduates when</span>
               <span style={{fontFamily:"var(--font-serif)",fontSize:"17px",fontWeight:700}}>{seed.graduation_threshold}</span>
+              {seed.github_repo && seed.repo_setup && (
+                <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(61,186,122,0.8)",fontWeight:600,display:"block",marginTop:"8px",letterSpacing:"0.15em",textTransform:"uppercase"}}>✓ Repo setup</span>
+              )}
             </div>
-          )}
+          ) : seed.github_repo && seed.repo_setup ? (
+            <div style={{textAlign:"right"}}>
+              <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(61,186,122,0.8)",fontWeight:600,letterSpacing:"0.15em",textTransform:"uppercase"}}>✓ Repo setup</span>
+              <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)",display:"block",marginTop:"4px"}}>Branches created</span>
+            </div>
+          ) : null}
         </div>
 
         <div style={{marginBottom:"56px"}}>
@@ -173,6 +181,13 @@ export default function SeedPage() {
               )}
               {node.status === "open" && <RequestButton nodeId={node.id} seedId={seed.id} />}
               {node.status === "active" && <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(61,186,122,0.8)",fontWeight:600}}>✓ Node filled</p>}
+              {node.status === "active" && me && node.contributor_id === me.id && seed.github_repo && (
+                <div style={{marginTop:"10px",padding:"10px 14px",background:"rgba(14,12,9,0.03)",borderLeft:"2px solid rgba(14,12,9,0.12)"}}>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.45)",fontWeight:600,display:"block",marginBottom:"4px"}}>Your branch</span>
+                  <code style={{fontFamily:"'Courier New',monospace",fontSize:"13px",color:"var(--ink)",fontWeight:600}}>role/{node.role.toLowerCase().replace(/\s+/g,"-")}</code>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)",display:"block",marginTop:"4px"}}>Push your work here. Open a PR to main when your milestone is complete.</span>
+                </div>
+              )}
             </div>
           ))}
         </div>

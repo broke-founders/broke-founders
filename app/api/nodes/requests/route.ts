@@ -4,6 +4,7 @@ import { cookies } from "next/headers"
 import { logContribution } from "@/lib/contributions"
 import { transporter } from "@/lib/mailer"
 import { notify } from "@/lib/notify"
+import { inviteCollaborator, createBranch, pushFile, generateCodebaseMap, generateContributing } from "@/lib/github"
 export async function GET() {
   const cookieStore = await cookies()
   const raw = cookieStore.get("bf_user")?.value
@@ -151,6 +152,73 @@ export async function PATCH(req: Request) {
         node_id: request.node_id,
         action: "node_joined",
       })
+
+      // GitHub repo automation — fire and forget, never blocks approval
+      try {
+        // Fetch seed github_repo + repo_setup flag
+        const { data: seed } = await supabase
+          .from("seeds")
+          .select("github_repo, originator_id, title, repo_setup")
+          .eq("id", request.seed_id)
+          .single()
+
+        if (seed?.github_repo) {
+          // Fetch originator token
+          const { data: originatorUser } = await supabase
+            .from("users")
+            .select("github_token")
+            .eq("id", seed.originator_id)
+            .single()
+
+          const originatorToken = originatorUser?.github_token
+
+          if (originatorToken) {
+            // Fetch contributor username
+            const { data: contributor } = await supabase
+              .from("users")
+              .select("username")
+              .eq("id", request.requester_id)
+              .single()
+
+            // Fetch the approved node role
+            const { data: approvedNode } = await supabase
+              .from("nodes")
+              .select("role")
+              .eq("id", request.node_id)
+              .single()
+
+            const roleBranch = `role/${(approvedNode?.role || "contributor").toLowerCase().replace(/\s+/g, "-")}`
+
+            // Invite contributor as collaborator
+            if (contributor?.username) {
+              await inviteCollaborator(seed.github_repo, contributor.username, originatorToken)
+            }
+
+            // Create role branch
+            await createBranch(seed.github_repo, roleBranch, originatorToken)
+
+            // First node approval → push CONTRIBUTING.md + CODEBASE.md
+            if (!seed.repo_setup) {
+              const { data: allNodes } = await supabase
+                .from("nodes")
+                .select("role, slice, milestone")
+                .eq("seed_id", request.seed_id)
+
+              if (allNodes?.length) {
+                const contributing = generateContributing(seed.title, allNodes)
+                const codebaseMap = generateCodebaseMap(allNodes)
+
+                await pushFile(seed.github_repo, "CONTRIBUTING.md", contributing, "chore: add contributing guide [broke-founders]", originatorToken)
+                await pushFile(seed.github_repo, "CODEBASE.md", codebaseMap, "chore: add codebase map [broke-founders]", originatorToken)
+              }
+
+              await supabase.from("seeds").update({ repo_setup: true }).eq("id", request.seed_id)
+            }
+          }
+        }
+      } catch (ghErr) {
+        console.error("[github automation]", ghErr)
+      }
     }
 
     await notify({

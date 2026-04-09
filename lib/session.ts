@@ -6,6 +6,7 @@ export type SessionUser = {
   github_avatar: string
   name: string
   email: string
+  github_token?: string
 }
 
 export async function getSession(): Promise<SessionUser | null> {
