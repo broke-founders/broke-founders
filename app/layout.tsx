@@ -16,7 +16,19 @@ const sans = Instrument_Sans({
 
 export const metadata: Metadata = {
   title: "Broke Founders — For builders who are almost there",
-  description: "Where skilled builders find each other. No salaries. No equity negotiation. Declare your scope, build together, split what it earns.",
+  description: "Skills for equity. Build together. Split what it earns.",
+  openGraph: {
+    title: "Broke Founders — For builders who are almost there",
+    description: "Skills for equity. Build together. Split what it earns.",
+    url: "https://broke-founders.vercel.app",
+    type: "website",
+    images: [{ url: "https://broke-founders.vercel.app/og.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Broke Founders — For builders who are almost there",
+    description: "Skills for equity. Build together. Split what it earns.",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

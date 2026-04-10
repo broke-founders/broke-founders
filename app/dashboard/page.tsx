@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 import { NotificationBell } from "@/components/NotificationBell"
+import { MobileNav } from "@/components/MobileNav"
 
 export default async function Dashboard() {
   const session = await getSession()
@@ -30,13 +31,15 @@ export default async function Dashboard() {
           Broke Founders
         </Link>
         <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
-          {session.github_avatar && <img src={session.github_avatar} alt="" width={28} height={28} style={{borderRadius:"50%"}}/>}
-          <span className="nav-links" style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>{session.github_username}</span>
-          <Link href="/chat" className="nav-links" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Feed</Link>
-          <NotificationBell userId={session.id} />
-          <Link href={`/u/${session.github_username}`} className="nav-links" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>My profile</Link>
-          <a href="/api/auth/logout" className="nav-links" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",textDecoration:"none",fontWeight:600}}>Sign out</a>
-          <a href="/api/auth/logout" className="nav-mobile-only" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",textDecoration:"none",fontWeight:600,alignItems:"center"}}>Sign out</a>
+          <div className="desktop-nav-links">
+            {session.github_avatar && <img src={session.github_avatar} alt="" width={28} height={28} style={{borderRadius:"50%"}}/>}
+            <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>{session.github_username}</span>
+            <Link href="/chat" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Feed</Link>
+            <NotificationBell userId={session.id} />
+            <Link href={`/u/${session.github_username}`} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>My profile</Link>
+            <a href="/api/auth/logout" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",textDecoration:"none",fontWeight:600}}>Sign out</a>
+          </div>
+          <MobileNav username={session.github_username} />
         </div>
       </nav>
 

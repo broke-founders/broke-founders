@@ -257,10 +257,14 @@ button { cursor: pointer; }
 
 /* Mobile nav */
 .nav-mobile-only { display: none; }
+.mobile-hamburger { display: none; }
+.desktop-nav-links { display: flex; align-items: center; gap: 20px; }
 
 @media (max-width: 640px) {
   .nav-links { display: none !important; }
   .nav-mobile-only { display: flex !important; }
+  .desktop-nav-links { display: none !important; }
+  .mobile-hamburger { display: flex !important; }
 }
 
 /* Responsive */

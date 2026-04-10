@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { MobileNav } from "@/components/MobileNav"
 
 export default function SeedsPage() {
   const [seeds, setSeeds] = useState<any[]>([])
@@ -23,7 +24,10 @@ export default function SeedsPage() {
     <main style={{minHeight:"100vh",background:"var(--paper)"}}>
       <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"22px 48px",borderBottom:"1px solid var(--faint)"}}>
         <Link href="/dashboard" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600}}>← Dashboard</Link>
-        <Link href="/seeds/new" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"10px 20px",textDecoration:"none"}}>Float a seed</Link>
+        <div style={{display:"flex",alignItems:"center",gap:"12px"}}>
+          <Link href="/seeds/new" className="desktop-nav-links" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"10px 20px",textDecoration:"none"}}>Float a seed</Link>
+          <MobileNav />
+        </div>
       </nav>
 
       <section style={{padding:"64px 48px",maxWidth:"880px"}}>
