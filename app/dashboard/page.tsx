@@ -35,6 +35,7 @@ export default async function Dashboard() {
             {session.github_avatar && <img src={session.github_avatar} alt="" width={28} height={28} style={{borderRadius:"50%"}}/>}
             <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.6)"}}>{session.github_username}</span>
             <Link href="/chat" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Feed</Link>
+            <Link href="/builders" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Find builders</Link>
             <NotificationBell userId={session.id} />
             <Link href={`/u/${session.github_username}`} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>My profile</Link>
             <a href="/api/auth/logout" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",textDecoration:"none",fontWeight:600}}>Sign out</a>
