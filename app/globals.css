@@ -267,15 +267,72 @@ button { cursor: pointer; }
   .mobile-hamburger { display: flex !important; }
 }
 
-/* Responsive */
+/* Focus styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* Row/card hover transitions */
+[class*="row"],
+[class*="card"] {
+  transition: background 0.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* Responsive layout */
 @media (max-width: 768px) {
-  .nav { padding: 16px 24px; }
-  .section { padding: 56px 24px; }
+  section, .section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  nav {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    flex-wrap: wrap;
+    gap: clamp(8px,2vw,16px);
+  }
+  h1 { font-size: clamp(32px,8vw,64px) !important; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(28px,7vw,52px) !important; }
+  h3 { font-size: clamp(20px,5vw,32px) !important; }
+  .desktop-only { display: none !important; }
+  .stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .admin-stats { grid-template-columns: 1fr 1fr !important; }
+  .step-row { grid-template-columns: 40px 1fr !important; }
+  .two-col { grid-template-columns: 1fr !important; }
   .btn-primary { padding: 13px 22px; }
-  h1 { letter-spacing: -0.02em; }
 }
 
 @media (max-width: 480px) {
+  section, .section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  nav {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .admin-stats { grid-template-columns: 1fr 1fr !important; }
+  table { font-size: 13px !important; }
+  .hide-mobile { display: none !important; }
   .nav { padding: 14px 16px; }
   .section { padding: 48px 16px; }
+  input, button { min-width: 0; }
+  form { flex-wrap: wrap; }
+}
+
+/* Mobile input safety */
+input, textarea, select {
+  min-width: 0;
+  max-width: 100%;
+}
+button {
+  white-space: nowrap;
+}
+form {
+  flex-wrap: wrap;
 }

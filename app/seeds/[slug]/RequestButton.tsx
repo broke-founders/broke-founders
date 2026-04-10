@@ -39,7 +39,7 @@ export function RequestButton({ nodeId, seedId }: { nodeId: string, seedId: stri
             <button onClick={submit} disabled={status==="loading"} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",border:"none",padding:"10px 20px",cursor:"pointer"}}>
               {status==="loading" ? "Sending..." : "Send request →"}
             </button>
-            <button onClick={() => setOpen(false)} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",background:"transparent",border:"1px solid rgba(14,12,9,0.12)",padding:"10px 20px",cursor:"pointer"}}>
+            <button onClick={() => setOpen(false)} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.6)",background:"transparent",border:"1px solid rgba(14,12,9,0.12)",padding:"10px 20px",cursor:"pointer"}}>
               Cancel
             </button>
           </div>

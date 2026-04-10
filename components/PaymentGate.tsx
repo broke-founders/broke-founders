@@ -79,7 +79,7 @@ function BinancePay({ seedId, onSuccess }: { seedId: string; onSuccess: () => vo
         {loading ? "Opening Binance Pay…" : polling ? "Waiting for payment…" : "Pay with Binance Pay"}
       </button>
       {polling && (
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.45)", marginTop: "10px", textAlign: "center" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.65)", marginTop: "10px", textAlign: "center" }}>
           Complete payment in the Binance tab. This page will update automatically.
         </p>
       )}

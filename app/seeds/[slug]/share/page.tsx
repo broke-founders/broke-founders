@@ -26,7 +26,7 @@ export default async function SharePage({
   if (!seed) {
     return (
       <main style={{ minHeight: "100vh", background: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.5)" }}>Seed not found.</p>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.7)" }}>Seed not found.</p>
       </main>
     )
   }
@@ -48,7 +48,7 @@ export default async function SharePage({
 
         {openNodes.length > 0 && (
           <div style={{ marginBottom: "56px" }}>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(14,12,9,0.5)", marginBottom: "20px", fontWeight: 600 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(14,12,9,0.7)", marginBottom: "20px", fontWeight: 600 }}>
               Open nodes — {openNodes.length} {openNodes.length === 1 ? "role" : "roles"} available
             </p>
             <div style={{ borderTop: "1px solid rgba(14,12,9,0.08)" }}>
@@ -69,7 +69,7 @@ export default async function SharePage({
           >
             Join this seed →
           </Link>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.35)" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.55)" }}>
             by @{(seed.users as any)?.username}
           </span>
         </div>

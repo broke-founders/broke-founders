@@ -34,7 +34,7 @@ export default function BuilderProfile() {
 
   if (loading) return (
     <main style={{minHeight:"100vh",background:"var(--paper)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-      <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.5)"}}>Loading...</span>
+      <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.7)"}}>Loading...</span>
     </main>
   )
 
@@ -59,13 +59,13 @@ export default function BuilderProfile() {
         <div style={{display:"flex",alignItems:"flex-start",gap:"24px",marginBottom:"48px",paddingBottom:"48px",borderBottom:"1px solid rgba(14,12,9,0.1)"}}>
           {user.avatar_url
             ? <img src={user.avatar_url} alt="" width={80} height={80} style={{borderRadius:"50%"}}/>
-            : <div style={{width:80,height:80,borderRadius:"50%",background:"rgba(14,12,9,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--font-sans)",fontSize:"28px",fontWeight:700,color:"rgba(14,12,9,0.4)"}}>{user.username?.[0]?.toUpperCase()}</div>
+            : <div style={{width:80,height:80,borderRadius:"50%",background:"rgba(14,12,9,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--font-sans)",fontSize:"28px",fontWeight:700,color:"rgba(14,12,9,0.6)"}}>{user.username?.[0]?.toUpperCase()}</div>
           }
           <div style={{flex:1}}>
             <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"var(--red)",marginBottom:"8px",fontWeight:600}}>Builder</p>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(32px,5vw,52px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.02em",marginBottom:"8px"}}>{user.name || user.username}</h1>
             <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.55)"}}>@{user.username}</p>
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)",marginTop:"6px"}}>
+            <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.6)",marginTop:"6px"}}>
               Member since {new Date(user.created_at).toLocaleDateString("en-GB",{month:"long",year:"numeric"})}
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function BuilderProfile() {
             <div>
               <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:"6px",fontWeight:600,color:level?.color||"rgba(14,12,9,0.5)"}}>{level?.title}</p>
               <p style={{fontFamily:"var(--font-serif)",fontSize:"52px",fontWeight:900,lineHeight:1,color:"rgba(14,12,9,0.9)"}}>{score}</p>
-              <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.4)",marginTop:"4px"}}>points</p>
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.6)",marginTop:"4px"}}>points</p>
             </div>
             <Link href={`/messages/${username}`} className="btn btn-outline" style={{fontSize:"11px",padding:"10px 20px"}}>
               Message
@@ -103,7 +103,7 @@ export default function BuilderProfile() {
             Seeds originated — {seeds.length}
           </p>
           {seeds.length === 0 ? (
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.45)"}}>No seeds yet.</p>
+            <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.65)"}}>No seeds yet.</p>
           ) : (
             <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
               {seeds.map((seed: any) => (
@@ -155,9 +155,9 @@ export default function BuilderProfile() {
                   <div>
                     <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:600,color:"rgba(14,12,9,0.8)",display:"block",marginBottom:"3px"}}>
                       {ACTION_LABELS[c.action] || c.action}
-                      {c.seeds?.title && <span style={{fontWeight:400,color:"rgba(14,12,9,0.5)"}}> — {c.seeds.title}</span>}
+                      {c.seeds?.title && <span style={{fontWeight:400,color:"rgba(14,12,9,0.7)"}}> — {c.seeds.title}</span>}
                     </span>
-                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)"}}>
+                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.6)"}}>
                       {new Date(c.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
                     </span>
                   </div>

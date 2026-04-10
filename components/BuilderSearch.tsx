@@ -50,7 +50,7 @@ export function BuilderSearch({ builders }: { builders: Builder[] }) {
       />
 
       {filtered.length === 0 && (
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.4)" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.6)" }}>
           No builders match that search.
         </p>
       )}
@@ -65,11 +65,11 @@ export function BuilderSearch({ builders }: { builders: Builder[] }) {
               <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "16px" }}>
                 {b.avatar_url
                   ? <img src={b.avatar_url} alt="" width={44} height={44} style={{ borderRadius: "50%", flexShrink: 0 }} />
-                  : <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 700, color: "rgba(14,12,9,0.4)", flexShrink: 0 }}>{b.username?.[0]?.toUpperCase()}</div>
+                  : <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 700, color: "rgba(14,12,9,0.6)", flexShrink: 0 }}>{b.username?.[0]?.toUpperCase()}</div>
                 }
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p style={{ fontFamily: "var(--font-serif)", fontSize: "17px", fontWeight: 700, color: "rgba(14,12,9,0.9)", marginBottom: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{b.name || b.username}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.45)" }}>@{b.username}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.65)" }}>@{b.username}</p>
                 </div>
               </div>
 
@@ -77,7 +77,7 @@ export function BuilderSearch({ builders }: { builders: Builder[] }) {
                 <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600, color: b.level?.color || "rgba(14,12,9,0.45)" }}>
                   {b.level?.title}
                 </span>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.5)" }}>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.7)" }}>
                   {b.score} pts
                 </span>
               </div>
@@ -88,7 +88,7 @@ export function BuilderSearch({ builders }: { builders: Builder[] }) {
                 </p>
               )}
 
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.4)", marginTop: "4px" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.6)", marginTop: "4px" }}>
                 {b.seedsCount} {b.seedsCount === 1 ? "seed" : "seeds"} originated
               </p>
             </div>

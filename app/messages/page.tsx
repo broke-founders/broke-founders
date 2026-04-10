@@ -33,11 +33,11 @@ export default function MessagesPage() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(36px,6vw,64px)", fontWeight: 900, lineHeight: 0.95, letterSpacing: "-0.03em", marginBottom: "48px" }}>Messages</h1>
 
         {loading && (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(14,12,9,0.4)" }}>Loading…</p>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(14,12,9,0.6)" }}>Loading…</p>
         )}
 
         {!loading && conversations.length === 0 && (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(14,12,9,0.45)", lineHeight: 1.8 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "rgba(14,12,9,0.65)", lineHeight: 1.8 }}>
             No conversations yet. Visit a builder's profile to send a message.
           </p>
         )}
@@ -49,12 +49,12 @@ export default function MessagesPage() {
                 <div style={{ padding: "20px 0", borderBottom: "1px solid rgba(14,12,9,0.07)", display: "flex", alignItems: "center", gap: "14px" }}>
                   {c.partner?.avatar_url
                     ? <img src={c.partner.avatar_url} alt="" width={40} height={40} style={{ borderRadius: "50%", flexShrink: 0 }} />
-                    : <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 700, color: "rgba(14,12,9,0.5)", flexShrink: 0 }}>{c.partner?.username?.[0]?.toUpperCase() || "?"}</div>
+                    : <div style={{ width: 40, height: 40, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 700, color: "rgba(14,12,9,0.7)", flexShrink: 0 }}>{c.partner?.username?.[0]?.toUpperCase() || "?"}</div>
                   }
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px" }}>
                       <span style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: c.unread > 0 ? 700 : 500, color: "rgba(14,12,9,0.9)" }}>@{c.partner?.username}</span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.35)", flexShrink: 0, marginLeft: "12px" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.55)", flexShrink: 0, marginLeft: "12px" }}>
                         {new Date(c.latest.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
                       </span>
                     </div>

@@ -67,9 +67,9 @@ export default async function BuildersPage() {
       <section style={{ padding: "64px 48px", maxWidth: "1100px" }}>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "var(--red)", marginBottom: "20px", fontWeight: 600 }}>Builders</p>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(36px,5vw,56px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: "-0.03em", marginBottom: "16px" }}>
-          Find your<br /><em style={{ fontWeight: 400, color: "rgba(14,12,9,0.3)" }}>next teammate.</em>
+          Find your<br /><em style={{ fontWeight: 400, color: "rgba(14,12,9,0.55)" }}>next teammate.</em>
         </h1>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.5)", marginBottom: "48px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.7)", marginBottom: "48px" }}>
           {builders.length} builders on the platform
         </p>
 

@@ -102,7 +102,7 @@ export default function ConversationPage() {
           <Link href={`/u/${otherUser.username}`} style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
             {otherUser.avatar_url
               ? <img src={otherUser.avatar_url} alt="" width={28} height={28} style={{ borderRadius: "50%" }} />
-              : <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 700, color: "rgba(14,12,9,0.5)" }}>{otherUser.username?.[0]?.toUpperCase()}</div>
+              : <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 700, color: "rgba(14,12,9,0.7)" }}>{otherUser.username?.[0]?.toUpperCase()}</div>
             }
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, color: "rgba(14,12,9,0.85)" }}>@{otherUser.username}</span>
           </Link>
@@ -113,10 +113,10 @@ export default function ConversationPage() {
       {/* Messages */}
       <div style={{ flex: 1, overflowY: "auto", padding: "32px 48px", maxWidth: "720px", width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: "16px" }}>
         {loading && (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(14,12,9,0.4)", textAlign: "center", marginTop: "40px" }}>Loading…</p>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(14,12,9,0.6)", textAlign: "center", marginTop: "40px" }}>Loading…</p>
         )}
         {!loading && messages.length === 0 && (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.4)", textAlign: "center", marginTop: "60px", lineHeight: 1.8 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.6)", textAlign: "center", marginTop: "60px", lineHeight: 1.8 }}>
             No messages yet. Send the first one.
           </p>
         )}
@@ -127,13 +127,13 @@ export default function ConversationPage() {
               {!isMe && (
                 msg.sender?.avatar_url
                   ? <img src={msg.sender.avatar_url} alt="" width={28} height={28} style={{ borderRadius: "50%", flexShrink: 0, marginTop: 2 }} />
-                  : <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 700, color: "rgba(14,12,9,0.5)", flexShrink: 0, marginTop: 2 }}>{msg.sender?.username?.[0]?.toUpperCase() || "?"}</div>
+                  : <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(14,12,9,0.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-sans)", fontSize: "11px", fontWeight: 700, color: "rgba(14,12,9,0.7)", flexShrink: 0, marginTop: 2 }}>{msg.sender?.username?.[0]?.toUpperCase() || "?"}</div>
               )}
               <div style={{ maxWidth: "68%" }}>
                 <div style={{ padding: "12px 16px", background: isMe ? "var(--ink)" : "rgba(14,12,9,0.06)" }}>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.7, margin: 0, wordBreak: "break-word", color: isMe ? "var(--paper)" : "rgba(14,12,9,0.85)" }}>{msg.content}</p>
                 </div>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(14,12,9,0.3)", display: "block", marginTop: "4px", textAlign: isMe ? "right" : "left" }}>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(14,12,9,0.55)", display: "block", marginTop: "4px", textAlign: isMe ? "right" : "left" }}>
                   {new Date(msg.created_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}
                 </span>
               </div>

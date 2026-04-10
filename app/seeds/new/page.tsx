@@ -138,7 +138,7 @@ export default function NewSeed() {
   )
 
   const backBtn = () => (
-    <button onClick={() => setStep(s => s-1)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.45)",background:"transparent",padding:"14px 24px",border:"1px solid rgba(14,12,9,0.15)",cursor:"pointer",marginTop:"8px",marginRight:"12px"}}>
+    <button onClick={() => setStep(s => s-1)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.65)",background:"transparent",padding:"14px 24px",border:"1px solid rgba(14,12,9,0.15)",cursor:"pointer",marginTop:"8px",marginRight:"12px"}}>
       ← Back
     </button>
   )
@@ -168,7 +168,7 @@ export default function NewSeed() {
         {step === 1 && (
           <div>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,52px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"40px"}}>
-              What are you<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>building?</em>
+              What are you<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>building?</em>
             </h1>
             {label("Name your seed — 5 words or less")}
             {inp({ placeholder:"e.g. AI invoice tool for freelancers", value:title, onChange:e=>setTitle(e.target.value) })}
@@ -184,9 +184,9 @@ export default function NewSeed() {
         {step === 2 && (
           <div>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,52px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"40px"}}>
-              What kind of<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>product?</em>
+              What kind of<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>product?</em>
             </h1>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"8px",marginBottom:"32px"}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:"8px",marginBottom:"32px"}}>
               {CATEGORIES.map(c => optionBtn(c, category, setCategory))}
             </div>
             {backBtn()}
@@ -198,10 +198,10 @@ export default function NewSeed() {
         {step === 3 && (
           <div>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,52px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"16px"}}>
-              What do you<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>bring?</em>
+              What do you<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>bring?</em>
             </h1>
             <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.6)",marginBottom:"32px",lineHeight:1.8}}>We will remove your role from the suggestions — you already have it covered.</p>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"8px",marginBottom:"32px"}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:"8px",marginBottom:"32px"}}>
               {BACKGROUNDS.map(b => optionBtn(b, background, setBackground))}
             </div>
             {backBtn()}
@@ -213,7 +213,7 @@ export default function NewSeed() {
         {step === 4 && (
           <div>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,52px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"40px"}}>
-              Where are<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>you now?</em>
+              Where are<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>you now?</em>
             </h1>
             <div style={{display:"grid",gridTemplateColumns:"1fr",gap:"8px",marginBottom:"32px"}}>
               {CURRENT_STATE.map(s => optionBtn(s, currentState, setCurrentState))}
@@ -227,9 +227,9 @@ export default function NewSeed() {
         {step === 5 && (
           <div>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,52px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"40px"}}>
-              Who are you<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>building for?</em>
+              Who are you<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>building for?</em>
             </h1>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"8px",marginBottom:"32px"}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:"8px",marginBottom:"32px"}}>
               {TARGET_MARKET.map(t => optionBtn(t, targetMarket, setTargetMarket))}
             </div>
             {backBtn()}
@@ -241,7 +241,7 @@ export default function NewSeed() {
         {step === 6 && (
           <div>
             <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(32px,5vw,48px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"16px"}}>
-              Your suggested<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>team.</em>
+              Your suggested<br/><em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>team.</em>
             </h1>
             <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.6)",marginBottom:"40px",lineHeight:1.8}}>
               Based on a <strong>{category}</strong> built by a <strong>{background}</strong>. Adjust anything — slices, roles, milestones.
@@ -251,7 +251,7 @@ export default function NewSeed() {
             <div style={{padding:"20px 24px",background:"rgba(14,12,9,0.03)",border:"1px solid rgba(14,12,9,0.1)",marginBottom:"32px"}}>
               {label(`Your founding stake — ${stake}%`)}
               <input type="range" min={10} max={70} value={stake} onChange={e=>{setStake(Number(e.target.value))}} style={{width:"100%",accentColor:"var(--ink)",marginBottom:"8px"}} />
-              <div style={{display:"flex",justifyContent:"space-between",fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.5)"}}>
+              <div style={{display:"flex",justifyContent:"space-between",fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.7)"}}>
                 <span>10% min</span>
                 <span style={{color:"var(--ink)",fontWeight:700}}>{stake}% yours · {100-stake}% for contributors</span>
                 <span>70% max</span>
@@ -268,7 +268,7 @@ export default function NewSeed() {
               <div key={i} style={{borderTop:"1px solid rgba(14,12,9,0.1)",paddingTop:"24px",marginBottom:"8px"}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"16px"}}>
                   <span style={{fontFamily:"var(--font-serif)",fontSize:"20px",fontWeight:700}}>{node.custom ? "Custom node" : node.role}</span>
-                  <button onClick={()=>removeNode(i)} style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",color:"var(--red)",background:"none",border:"none",cursor:"pointer",fontWeight:600}}>Remove</button>
+                  <button onClick={()=>removeNode(i)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",color:"var(--red)",background:"none",border:"none",cursor:"pointer",fontWeight:600}}>Remove</button>
                 </div>
 
                 {node.custom && (
@@ -301,7 +301,7 @@ export default function NewSeed() {
             ))}
 
             {nodes.length < 6 && (
-              <button onClick={addNode} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.5)",background:"none",border:"1px solid rgba(14,12,9,0.15)",padding:"10px 20px",cursor:"pointer",marginBottom:"32px",marginTop:"8px"}}>
+              <button onClick={addNode} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.7)",background:"none",border:"1px solid rgba(14,12,9,0.15)",padding:"10px 20px",cursor:"pointer",marginBottom:"32px",marginTop:"8px"}}>
                 + Add another node
               </button>
             )}

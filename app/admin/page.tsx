@@ -68,7 +68,7 @@ export default async function AdminPage() {
       fossil: "rgba(14,12,9,0.25)",
     }
     return (
-      <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:colors[stage]||"rgba(14,12,9,0.4)",padding:"3px 8px",border:`1px solid ${colors[stage]||"rgba(14,12,9,0.12)"}`}}>
+      <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:colors[stage]||"rgba(14,12,9,0.4)",padding:"3px 8px",border:`1px solid ${colors[stage]||"rgba(14,12,9,0.12)"}`}}>
         {stage}
       </span>
     )
@@ -89,7 +89,7 @@ export default async function AdminPage() {
         </h1>
 
         {/* Stats */}
-        <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:"1px",background:"rgba(14,12,9,0.1)",marginBottom:"64px"}}>
+        <div className="admin-stats" style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:"1px",background:"rgba(14,12,9,0.1)",marginBottom:"64px"}}>
           {[
             { label:"Total seeds", value: stats.total_seeds },
             { label:"Active", value: stats.sprouting },
@@ -104,7 +104,7 @@ export default async function AdminPage() {
           ].map(stat => (
             <div key={stat.label} style={{background:"var(--paper)",padding:"28px 24px"}}>
               <span style={{fontFamily:"var(--font-serif)",fontSize:"36px",fontWeight:900,display:"block",marginBottom:"8px"}}>{stat.value}</span>
-              <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.5)",fontWeight:600}}>{stat.label}</span>
+              <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.7)",fontWeight:600}}>{stat.label}</span>
             </div>
           ))}
         </div>
@@ -130,14 +130,14 @@ export default async function AdminPage() {
                         </span>
                       ))}
                       {userSkills.length === 0 && (
-                        <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.35)",fontStyle:"italic"}}>No skills declared</span>
+                        <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.55)",fontStyle:"italic"}}>No skills declared</span>
                       )}
                     </div>
-                    <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.35)",display:"block",marginTop:"4px"}}>
+                    <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.55)",display:"block",marginTop:"4px"}}>
                       Signed up {new Date(w.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
                     </span>
                   </div>
-                  <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,padding:"4px 10px",border:`1px solid ${w.skills_submitted?"rgba(61,186,122,0.4)":"rgba(14,12,9,0.15)"}`,color:w.skills_submitted?"rgba(61,186,122,0.9)":"rgba(14,12,9,0.4)"}}>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,padding:"4px 10px",border:`1px solid ${w.skills_submitted?"rgba(61,186,122,0.4)":"rgba(14,12,9,0.15)"}`,color:w.skills_submitted?"rgba(61,186,122,0.9)":"rgba(14,12,9,0.4)"}}>
                     {w.skills_submitted ? "Skills in" : "Pending"}
                   </span>
                   <WaitlistActions email={w.email} />
@@ -158,7 +158,7 @@ export default async function AdminPage() {
                 <div key={seed.id} style={{padding:"16px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto auto auto",gap:"16px",alignItems:"center"}}>
                   <div>
                     <Link href={`/seeds/${seed.slug}`} style={{fontFamily:"var(--font-serif)",fontSize:"17px",fontWeight:700,textDecoration:"none",color:"rgba(14,12,9,0.9)",display:"block",marginBottom:"4px"}}>{seed.title}</Link>
-                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)"}}>
+                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.65)"}}>
                       by @{(seed.users as any)?.username} · {new Date(seed.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
                     </span>
                   </div>
@@ -183,7 +183,7 @@ export default async function AdminPage() {
               <div key={seed.id} style={{padding:"16px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto auto",gap:"24px",alignItems:"center"}}>
                 <div>
                   <Link href={`/seeds/${seed.slug}`} style={{fontFamily:"var(--font-serif)",fontSize:"17px",fontWeight:700,textDecoration:"none",color:"rgba(14,12,9,0.9)",display:"block",marginBottom:"4px"}}>{seed.title}</Link>
-                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)"}}>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.65)"}}>
                     by @{(seed.users as any)?.username} · {new Date(seed.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
                   </span>
                 </div>
@@ -204,11 +204,11 @@ export default async function AdminPage() {
               <div key={user.id} style={{padding:"14px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"auto 1fr auto",gap:"14px",alignItems:"center"}}>
                 {user.avatar_url
                   ? <img src={user.avatar_url} alt="" width={28} height={28} style={{borderRadius:"50%"}}/>
-                  : <div style={{width:28,height:28,borderRadius:"50%",background:"rgba(14,12,9,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--font-sans)",fontSize:"11px",fontWeight:700,color:"rgba(14,12,9,0.4)"}}>{user.username?.[0]?.toUpperCase()}</div>
+                  : <div style={{width:28,height:28,borderRadius:"50%",background:"rgba(14,12,9,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--font-sans)",fontSize:"11px",fontWeight:700,color:"rgba(14,12,9,0.6)"}}>{user.username?.[0]?.toUpperCase()}</div>
                 }
                 <div>
                   <Link href={`/u/${user.username}`} style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:700,textDecoration:"none",color:"rgba(14,12,9,0.85)",display:"block"}}>@{user.username}</Link>
-                  <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.4)"}}>Joined {new Date(user.created_at).toLocaleDateString("en-GB",{month:"short",year:"numeric"})}</span>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.6)"}}>Joined {new Date(user.created_at).toLocaleDateString("en-GB",{month:"short",year:"numeric"})}</span>
                 </div>
                 <Link href={`/u/${user.username}`} style={{color:"rgba(14,12,9,0.25)",textDecoration:"none",fontSize:"16px"}}>→</Link>
               </div>

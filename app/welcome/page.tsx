@@ -43,7 +43,7 @@ function WelcomeForm() {
 
   if (!validToken) return (
     <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"var(--paper)"}}>
-      <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.4)"}}>Invalid link.</p>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.6)"}}>Invalid link.</p>
     </div>
   )
 
@@ -54,7 +54,7 @@ function WelcomeForm() {
       </p>
       <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(48px,8vw,88px)",fontWeight:900,lineHeight:0.95,letterSpacing:"-0.03em",marginBottom:"28px",color:"#0E0C09"}}>
         Welcome to<br/>
-        <em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>Broke Founders.</em>
+        <em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>Broke Founders.</em>
       </h1>
       <p style={{fontFamily:"var(--font-sans)",fontSize:"16px",lineHeight:1.85,color:"rgba(14,12,9,0.55)",maxWidth:"380px"}}>
         We have your skills on record. We will reach out personally when the platform is ready for you.
@@ -72,10 +72,10 @@ function WelcomeForm() {
 
         <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(40px,6vw,64px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"16px",color:"#0E0C09"}}>
           What do you<br/>
-          <em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>bring to the table?</em>
+          <em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>bring to the table?</em>
         </h1>
 
-        <p style={{fontFamily:"var(--font-sans)",fontSize:"15px",lineHeight:1.85,color:"rgba(14,12,9,0.5)",marginBottom:"56px",maxWidth:"400px"}}>
+        <p style={{fontFamily:"var(--font-sans)",fontSize:"15px",lineHeight:1.85,color:"rgba(14,12,9,0.7)",marginBottom:"56px",maxWidth:"400px"}}>
           Tell us your skill. We will match you with seeds that need exactly what you have.
         </p>
 
@@ -83,7 +83,7 @@ function WelcomeForm() {
 
           {/* CATEGORY */}
           <div style={{marginBottom:"24px"}}>
-            <label style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",display:"block",marginBottom:"10px"}}>
+            <label style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.6)",display:"block",marginBottom:"10px"}}>
               Skill category
             </label>
             <select
@@ -101,7 +101,7 @@ function WelcomeForm() {
           {/* SUBCATEGORY */}
           {category && (
             <div style={{marginBottom:"24px"}}>
-              <label style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",display:"block",marginBottom:"10px"}}>
+              <label style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.6)",display:"block",marginBottom:"10px"}}>
                 Specific skill
               </label>
               <select
@@ -121,7 +121,7 @@ function WelcomeForm() {
           {/* CUSTOM */}
           {subcategory === "other" && (
             <div style={{marginBottom:"24px"}}>
-              <label style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",display:"block",marginBottom:"10px"}}>
+              <label style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.6)",display:"block",marginBottom:"10px"}}>
                 Tell us your skill
               </label>
               <input

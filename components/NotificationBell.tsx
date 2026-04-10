@@ -100,7 +100,7 @@ export function NotificationBell({ userId }: { userId: string }) {
                   <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:600,color:"rgba(14,12,9,0.85)",display:"block",marginBottom:"2px"}}>
                     {dmUnread} unread message{dmUnread > 1 ? "s" : ""}
                   </span>
-                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)"}}>View in Messages →</span>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.65)"}}>View in Messages →</span>
                 </div>
                 <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",fontWeight:700,color:"var(--paper)",background:"var(--red)",borderRadius:"50%",width:18,height:18,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                   {dmUnread}
@@ -110,14 +110,14 @@ export function NotificationBell({ userId }: { userId: string }) {
           )}
 
           {notifs.length === 0 && dmUnread === 0 && (
-            <div style={{padding:"24px 16px",fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)"}}>Nothing yet.</div>
+            <div style={{padding:"24px 16px",fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.6)"}}>Nothing yet.</div>
           )}
           {notifs.map(n => (
             <Link key={n.id} href={n.link || "/dashboard"} onClick={() => setOpen(false)} style={{textDecoration:"none",color:"inherit",display:"block"}}>
               <div style={{padding:"14px 16px",borderBottom:"1px solid rgba(14,12,9,0.06)",background:n.read?"transparent":"rgba(14,12,9,0.025)",transition:"background 0.2s ease"}}>
                 <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",fontWeight:n.read?400:600,color:"rgba(14,12,9,0.85)",display:"block",marginBottom:"3px"}}>{n.title}</span>
-                {n.body && <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.5)",display:"block",marginBottom:"4px"}}>{n.body}</span>}
-                <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.35)"}}>{new Date(n.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span>
+                {n.body && <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.7)",display:"block",marginBottom:"4px"}}>{n.body}</span>}
+                <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.55)"}}>{new Date(n.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span>
               </div>
             </Link>
           ))}

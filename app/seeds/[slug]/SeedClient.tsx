@@ -127,7 +127,7 @@ export default function SeedPage() {
                   <button onClick={graduate} disabled={graduating} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",border:"none",padding:"8px 16px",cursor:"pointer"}}>
                     {graduating ? "…" : "Confirm"}
                   </button>
-                  <button onClick={() => setConfirmGraduate(false)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)",background:"transparent",border:"none",cursor:"pointer"}}>Cancel</button>
+                  <button onClick={() => setConfirmGraduate(false)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.65)",background:"transparent",border:"none",cursor:"pointer"}}>Cancel</button>
                 </div>
               ) : (
                 <button onClick={() => setConfirmGraduate(true)} style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(61,186,122,0.9)",background:"transparent",border:"1px solid rgba(61,186,122,0.35)",padding:"8px 16px",cursor:"pointer"}}>
@@ -156,7 +156,7 @@ export default function SeedPage() {
         <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(40px,7vw,80px)",fontWeight:900,lineHeight:0.95,letterSpacing:"-0.03em",marginBottom:"32px"}}>{seed.title}</h1>
         <p style={{fontFamily:"var(--font-sans)",fontSize:"17px",lineHeight:1.9,color:"rgba(14,12,9,0.6)",maxWidth:"580px",marginBottom:"56px"}}>{seed.problem}</p>
 
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"32px",padding:"28px 0",borderTop:"1px solid var(--faint)",borderBottom:"1px solid var(--faint)",marginBottom:"56px"}}>
+        <div className="two-col" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"32px",padding:"28px 0",borderTop:"1px solid var(--faint)",borderBottom:"1px solid var(--faint)",marginBottom:"56px"}}>
           <div style={{display:"flex",alignItems:"center",gap:"12px"}}>
             {seed.users?.avatar_url
               ? <img src={seed.users.avatar_url} alt="" width={36} height={36} style={{borderRadius:"50%"}}/>
@@ -177,7 +177,7 @@ export default function SeedPage() {
           ) : seed.github_repo && seed.repo_setup ? (
             <div style={{textAlign:"right"}}>
               <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(61,186,122,0.8)",fontWeight:600,letterSpacing:"0.15em",textTransform:"uppercase"}}>✓ Repo setup</span>
-              <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)",display:"block",marginTop:"4px"}}>Branches created</span>
+              <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.65)",display:"block",marginTop:"4px"}}>Branches created</span>
             </div>
           ) : null}
         </div>
@@ -228,9 +228,9 @@ export default function SeedPage() {
               {node.status === "active" && <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(61,186,122,0.8)",fontWeight:600}}>✓ Node filled</p>}
               {node.status === "active" && me && node.contributor_id === me.id && seed.github_repo && (
                 <div style={{marginTop:"10px",padding:"10px 14px",background:"rgba(14,12,9,0.03)",borderLeft:"2px solid rgba(14,12,9,0.12)"}}>
-                  <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.45)",fontWeight:600,display:"block",marginBottom:"4px"}}>Your branch</span>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(14,12,9,0.65)",fontWeight:600,display:"block",marginBottom:"4px"}}>Your branch</span>
                   <code style={{fontFamily:"'Courier New',monospace",fontSize:"13px",color:"var(--ink)",fontWeight:600}}>role/{node.role.toLowerCase().replace(/\s+/g,"-")}</code>
-                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.45)",display:"block",marginTop:"4px"}}>Push your work here. Open a PR to main when your milestone is complete.</span>
+                  <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.65)",display:"block",marginTop:"4px"}}>Push your work here. Open a PR to main when your milestone is complete.</span>
                 </div>
               )}
             </div>

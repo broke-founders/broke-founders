@@ -67,7 +67,7 @@ function SeedsContent() {
   return (
     <main style={{ minHeight: "100vh", background: "var(--paper)" }}>
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 48px", borderBottom: "1px solid var(--faint)" }}>
-        <Link href="/dashboard" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.35)", textDecoration: "none", fontWeight: 600 }}>← Dashboard</Link>
+        <Link href="/dashboard" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.55)", textDecoration: "none", fontWeight: 600 }}>← Dashboard</Link>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <Link href="/builders" className="desktop-nav-links" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 600, color: "rgba(14,12,9,0.55)", textDecoration: "none" }}>Find builders</Link>
           <Link href="/seeds/new" className="desktop-nav-links" style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 600, color: "var(--paper)", background: "var(--ink)", padding: "10px 20px", textDecoration: "none" }}>Float a seed</Link>
@@ -78,7 +78,7 @@ function SeedsContent() {
       <section style={{ padding: "64px 48px", maxWidth: "880px" }}>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "var(--red)", marginBottom: "20px", fontWeight: 600 }}>Live seeds</p>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(36px,5vw,56px)", fontWeight: 900, lineHeight: 1.0, letterSpacing: "-0.03em", marginBottom: "40px" }}>
-          Find your<br /><em style={{ fontWeight: 400, color: "rgba(14,12,9,0.3)" }}>next build.</em>
+          Find your<br /><em style={{ fontWeight: 400, color: "rgba(14,12,9,0.55)" }}>next build.</em>
         </h1>
 
         {/* Search */}
@@ -116,9 +116,9 @@ function SeedsContent() {
           ))}
         </div>
 
-        {loading && <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.3)" }}>Loading...</p>}
+        {loading && <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.55)" }}>Loading...</p>}
         {!loading && filtered.length === 0 && (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.3)" }}>No seeds match. <Link href="/seeds/new" style={{ color: "var(--ink)" }}>Float the first one.</Link></p>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.55)" }}>No seeds match. <Link href="/seeds/new" style={{ color: "var(--ink)" }}>Float the first one.</Link></p>
         )}
 
         <div style={{ borderTop: "1px solid var(--faint)" }}>
@@ -128,10 +128,10 @@ function SeedsContent() {
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
                     <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--red)", fontWeight: 600 }}>{seed.stage}</span>
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(14,12,9,0.3)" }}>{new Date(seed.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</span>
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", color: "rgba(14,12,9,0.55)" }}>{new Date(seed.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</span>
                   </div>
                   <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "24px", fontWeight: 700, marginBottom: "8px", lineHeight: 1.2 }}>{seed.title}</h2>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.7, color: "rgba(14,12,9,0.5)", maxWidth: "520px" }}>{seed.problem?.slice(0, 120)}{seed.problem?.length > 120 ? "..." : ""}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.7, color: "rgba(14,12,9,0.7)", maxWidth: "520px" }}>{seed.problem?.slice(0, 120)}{seed.problem?.length > 120 ? "..." : ""}</p>
                   {seed.open_nodes > 0 && (
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "var(--red)", marginTop: "10px", fontWeight: 600, letterSpacing: "0.1em" }}>{seed.open_nodes} open {seed.open_nodes === 1 ? "node" : "nodes"}</p>
                   )}

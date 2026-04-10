@@ -53,7 +53,7 @@ export function CommitLog({ seedSlug }: { seedSlug: string }) {
             <span style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.75)", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {c.message}
             </span>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.35)", flexShrink: 0 }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.55)", flexShrink: 0 }}>
               {c.author} · {new Date(c.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
             </span>
           </div>

@@ -82,7 +82,7 @@ export function MobileNav({ username }: Props) {
         >
           {/* Header */}
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"48px"}}>
-            <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",fontWeight:600}}>
+            <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.6)",fontWeight:600}}>
               Menu
             </span>
             <button
@@ -128,7 +128,7 @@ export function MobileNav({ username }: Props) {
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               fontWeight: 600,
-              color: "rgba(14,12,9,0.4)",
+              color: "rgba(14,12,9,0.6)",
               textDecoration: "none",
               marginTop: "32px",
             }}

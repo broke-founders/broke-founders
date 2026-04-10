@@ -57,14 +57,14 @@ export function AgreementModal({ seedSlug, onClose }: { seedSlug: string; onClos
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "22px", fontWeight: 700, letterSpacing: "-0.02em" }}>Seed Agreement</h2>
           <button
             onClick={onClose}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "18px", background: "transparent", border: "none", color: "rgba(14,12,9,0.4)", cursor: "pointer", lineHeight: 1, padding: "4px" }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: "18px", background: "transparent", border: "none", color: "rgba(14,12,9,0.6)", cursor: "pointer", lineHeight: 1, padding: "4px" }}
           >×</button>
         </div>
 
         {/* Body */}
         <div style={{ flex: 1, overflowY: "auto", padding: "24px 28px" }}>
           {loading && (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.45)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Loading…</p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.65)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Loading…</p>
           )}
 
           {!loading && data && !data.available && (
@@ -86,7 +86,7 @@ export function AgreementModal({ seedSlug, onClose }: { seedSlug: string; onClos
                   Signatures — {data.signers.length} signed
                 </p>
                 {data.signers.length === 0 && (
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.4)" }}>No signatures yet.</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.6)" }}>No signatures yet.</p>
                 )}
                 {data.signers.map(s => (
                   <div key={s.user_id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 0", borderBottom: "1px solid rgba(14,12,9,0.06)" }}>
@@ -99,7 +99,7 @@ export function AgreementModal({ seedSlug, onClose }: { seedSlug: string; onClos
               </div>
 
               {/* Hash */}
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(14,12,9,0.3)", letterSpacing: "0.05em", wordBreak: "break-all" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", color: "rgba(14,12,9,0.55)", letterSpacing: "0.05em", wordBreak: "break-all" }}>
                 Content hash: {data.contentHash}
               </p>
             </>
@@ -112,7 +112,7 @@ export function AgreementModal({ seedSlug, onClose }: { seedSlug: string; onClos
             {error && <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "var(--red)" }}>{error}</span>}
 
             {!data.isContributor && !error && (
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(14,12,9,0.45)" }}>You are not a contributor on this seed.</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "rgba(14,12,9,0.65)" }}>You are not a contributor on this seed.</span>
             )}
 
             {data.isContributor && data.currentUserSigned && !error && (

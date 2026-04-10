@@ -9,18 +9,18 @@ export default function TermsPage() {
   return (
     <main style={{ minHeight: "100vh", background: "var(--paper)" }}>
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 48px", borderBottom: "1px solid rgba(14,12,9,0.08)" }}>
-        <Link href="/" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.45)", textDecoration: "none", fontWeight: 600 }}>Broke Founders</Link>
-        <Link href="/legal/privacy" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.45)", textDecoration: "none", fontWeight: 600 }}>Privacy policy</Link>
+        <Link href="/" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.65)", textDecoration: "none", fontWeight: 600 }}>Broke Founders</Link>
+        <Link href="/legal/privacy" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.65)", textDecoration: "none", fontWeight: 600 }}>Privacy policy</Link>
       </nav>
 
       <section style={{ padding: "72px 48px 100px", maxWidth: "720px" }}>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(14,12,9,0.4)", marginBottom: "20px", fontWeight: 600 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(14,12,9,0.6)", marginBottom: "20px", fontWeight: 600 }}>
           Legal
         </p>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(36px,6vw,64px)", fontWeight: 900, lineHeight: 0.95, letterSpacing: "-0.03em", marginBottom: "16px" }}>
           Terms of service
         </h1>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.4)", marginBottom: "64px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "rgba(14,12,9,0.6)", marginBottom: "64px" }}>
           Last updated: April 2026
         </p>
 
@@ -68,8 +68,8 @@ export default function TermsPage() {
       </section>
 
       <footer style={{ padding: "28px 48px", borderTop: "1px solid rgba(14,12,9,0.08)", display: "flex", gap: "24px" }}>
-        <Link href="/legal/privacy" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.4)", textDecoration: "none", fontWeight: 600 }}>Privacy policy</Link>
-        <Link href="/" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.4)", textDecoration: "none", fontWeight: 600 }}>Home</Link>
+        <Link href="/legal/privacy" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.6)", textDecoration: "none", fontWeight: 600 }}>Privacy policy</Link>
+        <Link href="/" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.6)", textDecoration: "none", fontWeight: 600 }}>Home</Link>
       </footer>
     </main>
   )

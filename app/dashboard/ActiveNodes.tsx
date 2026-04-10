@@ -30,7 +30,7 @@ export function ActiveNodes() {
 
   return (
     <div style={{marginBottom:"48px"}}>
-      <p style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>
         My active nodes — {nodes.length}
       </p>
       <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
@@ -44,7 +44,7 @@ export function ActiveNodes() {
             </div>
             <button
               onClick={() => leave(node.id)}
-              style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.4)",background:"transparent",border:"1px solid rgba(14,12,9,0.12)",padding:"8px 14px",cursor:"pointer"}}
+              style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.6)",background:"transparent",border:"1px solid rgba(14,12,9,0.12)",padding:"8px 14px",cursor:"pointer"}}
             >
               Leave
             </button>

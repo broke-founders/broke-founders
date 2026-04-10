@@ -46,24 +46,24 @@ export default async function FossilsPage() {
   return (
     <main style={{ minHeight: "100vh", background: "var(--paper)" }}>
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 48px", borderBottom: "1px solid rgba(14,12,9,0.08)" }}>
-        <Link href="/dashboard" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.45)", textDecoration: "none", fontWeight: 600 }}>← Dashboard</Link>
-        <Link href="/seeds" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.45)", textDecoration: "none", fontWeight: 600 }}>Live seeds</Link>
+        <Link href="/dashboard" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.65)", textDecoration: "none", fontWeight: 600 }}>← Dashboard</Link>
+        <Link href="/seeds" style={{ fontFamily: "var(--font-sans)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,12,9,0.65)", textDecoration: "none", fontWeight: 600 }}>Live seeds</Link>
       </nav>
 
       <section style={{ padding: "72px 48px 100px", maxWidth: "880px" }}>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "rgba(14,12,9,0.4)", marginBottom: "20px", fontWeight: 600 }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "rgba(14,12,9,0.6)", marginBottom: "20px", fontWeight: 600 }}>
           The Archive
         </p>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(40px,7vw,80px)", fontWeight: 900, lineHeight: 0.95, letterSpacing: "-0.03em", marginBottom: "20px" }}>
           Every attempt<br />
           <em style={{ fontWeight: 400, color: "rgba(14,12,9,0.25)" }}>is worth recording.</em>
         </h1>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", lineHeight: 1.85, color: "rgba(14,12,9,0.5)", maxWidth: "520px", marginBottom: "72px" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "16px", lineHeight: 1.85, color: "rgba(14,12,9,0.7)", maxWidth: "520px", marginBottom: "72px" }}>
           These seeds did not ship. That does not mean nothing happened. Real work was done, real people showed up, and something was learned. That counts.
         </p>
 
         {fossils.length === 0 ? (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.35)" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "rgba(14,12,9,0.55)" }}>
             Nothing here yet. All seeds are still in play.
           </p>
         ) : (
@@ -73,10 +73,10 @@ export default async function FossilsPage() {
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "24px" }}>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.35)", fontWeight: 600, padding: "3px 8px", border: "1px solid rgba(14,12,9,0.12)" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(14,12,9,0.55)", fontWeight: 600, padding: "3px 8px", border: "1px solid rgba(14,12,9,0.12)" }}>
                         fossilized
                       </span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.35)" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.55)" }}>
                         {new Date(fossil.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
                       </span>
                     </div>
@@ -85,22 +85,22 @@ export default async function FossilsPage() {
                       {fossil.title}
                     </h2>
 
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.8, color: "rgba(14,12,9,0.45)", maxWidth: "540px", marginBottom: "20px" }}>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.8, color: "rgba(14,12,9,0.65)", maxWidth: "540px", marginBottom: "20px" }}>
                       {fossil.problem?.slice(0, 160)}{fossil.problem?.length > 160 ? "…" : ""}
                     </p>
 
                     <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.45)" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.65)" }}>
                         <strong style={{ color: "rgba(14,12,9,0.7)" }}>{fossil.teamSize}</strong> {fossil.teamSize === 1 ? "person" : "people"} involved
                       </span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.45)" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.65)" }}>
                         <strong style={{ color: "rgba(14,12,9,0.7)" }}>{fossil.nodeCount}</strong> {fossil.nodeCount === 1 ? "node" : "nodes"} scoped
                       </span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.45)" }}>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.65)" }}>
                         <strong style={{ color: "rgba(14,12,9,0.7)" }}>{fossil.contribCount}</strong> contributions logged
                       </span>
                       {(fossil.users as any)?.username && (
-                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.45)" }}>
+                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: "rgba(14,12,9,0.65)" }}>
                           by{" "}
                           <Link href={`/u/${(fossil.users as any).username}`} style={{ color: "rgba(14,12,9,0.6)", textDecoration: "none", fontWeight: 600 }}>
                             @{(fossil.users as any).username}
@@ -112,7 +112,7 @@ export default async function FossilsPage() {
 
                   <Link
                     href={`/seeds/${fossil.slug}`}
-                    style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 600, color: "rgba(14,12,9,0.35)", textDecoration: "none", border: "1px solid rgba(14,12,9,0.12)", padding: "8px 14px", flexShrink: 0, marginTop: "4px" }}
+                    style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 600, color: "rgba(14,12,9,0.55)", textDecoration: "none", border: "1px solid rgba(14,12,9,0.12)", padding: "8px 14px", flexShrink: 0, marginTop: "4px" }}
                   >
                     View seed
                   </Link>

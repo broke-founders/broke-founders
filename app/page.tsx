@@ -89,14 +89,14 @@ export default function Home() {
 
         {/* NAV */}
         <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px clamp(20px,4vw,48px)",borderBottom:"1px solid rgba(14,12,9,0.08)",position:"sticky",top:0,background:"rgba(245,241,234,0.92)",backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",zIndex:100}}>
-          <div className="nav-logo" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.5)"}}>
+          <div className="nav-logo" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:600,color:"rgba(14,12,9,0.7)"}}>
             Broke Founders
           </div>
           <div style={{display:"flex",alignItems:"center",gap:"clamp(16px,3vw,28px)"}}>
-            <a href="#how" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.45)",textDecoration:"none",display:"none"}}>
+            <a href="#how" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.65)",textDecoration:"none",display:"none"}}>
               How it works
             </a>
-            <a href="/login" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.45)",textDecoration:"none"}}>
+            <a href="/login" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.65)",textDecoration:"none"}}>
               Sign in
             </a>
             <a href="#join" className="btn-join" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"11px clamp(16px,2vw,22px)",textDecoration:"none",display:"inline-block"}}>
@@ -128,7 +128,7 @@ export default function Home() {
             <a href="#join" className="btn-join" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"14px clamp(20px,2.5vw,30px)",textDecoration:"none",display:"inline-block"}}>
               Join the waitlist
             </a>
-            <a href="#how" className="ghost-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.4)",textDecoration:"none"}}>
+            <a href="#how" className="ghost-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.6)",textDecoration:"none"}}>
               How it works <span>→</span>
             </a>
           </div>
@@ -262,13 +262,13 @@ export default function Home() {
         {/* FOOTER */}
         <footer style={{padding:"clamp(20px,3vw,28px) clamp(20px,4vw,48px)",borderTop:"1px solid rgba(14,12,9,0.08)"}}>
           <div className="footer-inner" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:"16px",flexWrap:"wrap"}}>
-            <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",fontWeight:600}}>Broke Founders</span>
+            <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.6)",fontWeight:600}}>Broke Founders</span>
             <div style={{display:"flex",gap:"20px",flexWrap:"wrap",alignItems:"center"}}>
-              <a href="/worth-building" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Worth building</a>
-              <a href="/fossils" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Archive</a>
-              <a href="/legal/terms" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Terms</a>
-              <a href="/legal/privacy" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Privacy</a>
-              <a href="/login" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600,transition:"color 0.2s ease"}}
+              <a href="/worth-building" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.55)",textDecoration:"none"}}>Worth building</a>
+              <a href="/fossils" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.55)",textDecoration:"none"}}>Archive</a>
+              <a href="/legal/terms" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.55)",textDecoration:"none"}}>Terms</a>
+              <a href="/legal/privacy" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.55)",textDecoration:"none"}}>Privacy</a>
+              <a href="/login" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600,transition:"color 0.2s ease"}}
                 onMouseEnter={e=>(e.currentTarget.style.color="rgba(14,12,9,0.8)")}
                 onMouseLeave={e=>(e.currentTarget.style.color="rgba(14,12,9,0.35)")}>
                 Sign in →

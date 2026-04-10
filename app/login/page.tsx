@@ -10,7 +10,7 @@ export default async function LoginPage() {
     <main style={{minHeight:"100vh",background:"var(--paper)",display:"flex",flexDirection:"column",justifyContent:"center",padding:"48px"}}>
       <div style={{maxWidth:"480px"}}>
 
-        <Link href="/" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",display:"block",marginBottom:"64px",fontWeight:600}}>
+        <Link href="/" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",display:"block",marginBottom:"64px",fontWeight:600}}>
           ← Broke Founders
         </Link>
 
@@ -20,10 +20,10 @@ export default async function LoginPage() {
 
         <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,6vw,56px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"16px"}}>
           Sign in to<br/>
-          <em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>build together.</em>
+          <em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>build together.</em>
         </h1>
 
-        <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",lineHeight:1.85,color:"rgba(14,12,9,0.5)",marginBottom:"48px",maxWidth:"340px"}}>
+        <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",lineHeight:1.85,color:"rgba(14,12,9,0.7)",marginBottom:"48px",maxWidth:"340px"}}>
           GitHub is your identity on Broke Founders. Your commits are your proof of work.
         </p>
 

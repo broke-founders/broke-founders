@@ -39,7 +39,7 @@ export default async function Dashboard() {
             <Link href="/fossils" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Archive</Link>
             <NotificationBell userId={session.id} />
             <Link href={`/u/${session.github_username}`} style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>My profile</Link>
-            <a href="/api/auth/logout" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",textDecoration:"none",fontWeight:600}}>Sign out</a>
+            <a href="/api/auth/logout" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.6)",textDecoration:"none",fontWeight:600}}>Sign out</a>
           </div>
           <MobileNav username={session.github_username} />
         </div>
@@ -50,7 +50,7 @@ export default async function Dashboard() {
         <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.32em",textTransform:"uppercase",color:"var(--red)",marginBottom:"20px",fontWeight:600}}>Dashboard</p>
         <h1 style={{fontFamily:"var(--font-serif)",fontSize:"clamp(36px,5vw,56px)",fontWeight:900,lineHeight:1.0,letterSpacing:"-0.03em",marginBottom:"56px"}}>
           Welcome,<br/>
-          <em style={{fontWeight:400,color:"rgba(14,12,9,0.3)"}}>{session.name || session.github_username}.</em>
+          <em style={{fontWeight:400,color:"rgba(14,12,9,0.55)"}}>{session.name || session.github_username}.</em>
         </h1>
 
         <ActiveNodes />
@@ -62,7 +62,7 @@ export default async function Dashboard() {
             </p>
             <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
               {requests.map((req: any) => (
-                <div key={req.id} style={{padding:"24px 0",borderBottom:"1px solid rgba(14,12,9,0.1)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
+                <div key={req.id} className="two-col" style={{padding:"24px 0",borderBottom:"1px solid rgba(14,12,9,0.1)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
                   <div>
                     <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:"8px"}}>
                       {req.users?.avatar_url && <img src={req.users.avatar_url} alt="" width={24} height={24} style={{borderRadius:"50%"}}/>}
@@ -85,7 +85,7 @@ export default async function Dashboard() {
         <div style={{marginBottom:"48px"}}>
           <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",marginBottom:"24px",fontWeight:600}}>My seeds</p>
           {!mySeeds?.length ? (
-            <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.45)"}}>No seeds yet.</p>
+            <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.65)"}}>No seeds yet.</p>
           ) : (
             <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
               {mySeeds.map(seed => (

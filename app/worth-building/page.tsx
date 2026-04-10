@@ -55,7 +55,7 @@ export default async function WorthBuilding() {
         <Link href="/login" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",textDecoration:"none",fontWeight:600}}>Sign in</Link>
       </nav>
 
-      <section style={{padding:"72px 48px 100px",maxWidth:"880px"}}>
+      <section style={{padding:"clamp(48px,8vw,72px) clamp(16px,5vw,48px) 100px",maxWidth:"880px"}}>
         <p style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.35em",textTransform:"uppercase",color:"var(--red)",marginBottom:"16px",fontWeight:700}}>
           Market signal
         </p>
@@ -73,18 +73,18 @@ export default async function WorthBuilding() {
             <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",fontWeight:600}}>
               Show HN — What builders just shipped
             </p>
-            <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(192,57,43,0.7)",border:"1px solid rgba(192,57,43,0.3)",padding:"2px 8px",fontWeight:600}}>Live</span>
+            <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(192,57,43,0.7)",border:"1px solid rgba(192,57,43,0.3)",padding:"2px 8px",fontWeight:600}}>Live</span>
           </div>
           <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
             {data.hn.length === 0 && (
-              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"24px 0"}}>No signals right now.</p>
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.6)",padding:"24px 0"}}>No signals right now.</p>
             )}
             {data.hn.map((item: any, i: number) => (
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none",color:"inherit",display:"block"}}>
                 <div style={{padding:"20px 0",borderBottom:"1px solid rgba(14,12,9,0.07)",display:"grid",gridTemplateColumns:"1fr auto",gap:"24px",alignItems:"center"}}>
                   <div>
                     <span style={{fontFamily:"var(--font-serif)",fontSize:"18px",fontWeight:700,display:"block",marginBottom:"4px",color:"rgba(14,12,9,0.92)"}}>{item.title}</span>
-                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)"}}>
+                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.6)"}}>
                       {item.points} points · {item.comments} comments
                     </span>
                   </div>
@@ -101,11 +101,11 @@ export default async function WorthBuilding() {
             <p style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.25em",textTransform:"uppercase",color:"rgba(14,12,9,0.55)",fontWeight:600}}>
               GitHub — Trending this month
             </p>
-            <span style={{fontFamily:"var(--font-sans)",fontSize:"9px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(61,186,122,0.8)",border:"1px solid rgba(61,186,122,0.3)",padding:"2px 8px",fontWeight:600}}>Live</span>
+            <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(61,186,122,0.8)",border:"1px solid rgba(61,186,122,0.3)",padding:"2px 8px",fontWeight:600}}>Live</span>
           </div>
           <div style={{borderTop:"1px solid rgba(14,12,9,0.1)"}}>
             {data.github.length === 0 && (
-              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"24px 0"}}>No signals right now.</p>
+              <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.6)",padding:"24px 0"}}>No signals right now.</p>
             )}
             {data.github.map((item: any, i: number) => (
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none",color:"inherit",display:"block"}}>
@@ -115,7 +115,7 @@ export default async function WorthBuilding() {
                     {item.description && (
                       <span style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.55)",display:"block",marginBottom:"4px"}}>{item.description.slice(0,100)}{item.description.length>100?"...":""}</span>
                     )}
-                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.4)"}}>
+                    <span style={{fontFamily:"var(--font-sans)",fontSize:"11px",color:"rgba(14,12,9,0.6)"}}>
                       ★ {item.points.toLocaleString()} · {item.language || "Unknown"}
                     </span>
                   </div>
@@ -127,7 +127,7 @@ export default async function WorthBuilding() {
         </div>
 
         <div style={{marginTop:"64px",paddingTop:"32px",borderTop:"1px solid rgba(14,12,9,0.08)"}}>
-          <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.5)",marginBottom:"20px",lineHeight:1.8}}>
+          <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.7)",marginBottom:"20px",lineHeight:1.8}}>
             See something worth building? Float a seed and find the team to build it with you.
           </p>
           <Link href="/login" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:600,color:"var(--paper)",background:"var(--ink)",padding:"13px 24px",textDecoration:"none",display:"inline-block"}}>

@@ -38,7 +38,7 @@ export function SeedUpdates({ seedId, isOriginator, hasSigned = true }: { seedId
 
   if (hasSigned === false) return (
     <div style={{marginTop:"64px",padding:"32px",border:"1px solid rgba(14,12,9,0.1)",textAlign:"center"}}>
-      <p style={{fontFamily:"var(--font-sans)",fontSize:"12px",letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(14,12,9,0.45)",fontWeight:600,marginBottom:"8px"}}>Build log locked</p>
+      <p style={{fontFamily:"var(--font-sans)",fontSize:"12px",letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(14,12,9,0.65)",fontWeight:600,marginBottom:"8px"}}>Build log locked</p>
       <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",color:"rgba(14,12,9,0.6)",margin:0}}>Sign the agreement to unlock the workspace.</p>
     </div>
   )
@@ -69,7 +69,7 @@ export function SeedUpdates({ seedId, isOriginator, hasSigned = true }: { seedId
       )}
 
       {updates.length === 0 && (
-        <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.4)",padding:"16px 0"}}>No updates yet.</p>
+        <p style={{fontFamily:"var(--font-sans)",fontSize:"13px",color:"rgba(14,12,9,0.6)",padding:"16px 0"}}>No updates yet.</p>
       )}
 
       <div style={{borderTop:"1px solid rgba(14,12,9,0.08)"}}>
@@ -82,7 +82,7 @@ export function SeedUpdates({ seedId, isOriginator, hasSigned = true }: { seedId
             <div>
               <div style={{display:"flex",gap:"10px",alignItems:"baseline",marginBottom:"6px"}}>
                 <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",fontWeight:700,color:"rgba(14,12,9,0.8)"}}>@{u.users?.username}</span>
-                <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.35)"}}>{new Date(u.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span>
+                <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",color:"rgba(14,12,9,0.55)"}}>{new Date(u.created_at).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span>
               </div>
               <p style={{fontFamily:"var(--font-sans)",fontSize:"14px",lineHeight:1.75,color:"rgba(14,12,9,0.72)",margin:0}}>{u.content}</p>
             </div>
