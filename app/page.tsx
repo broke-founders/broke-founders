@@ -261,17 +261,19 @@ export default function Home() {
 
         {/* FOOTER */}
         <footer style={{padding:"clamp(20px,3vw,28px) clamp(20px,4vw,48px)",borderTop:"1px solid rgba(14,12,9,0.08)"}}>
-          <div className="footer-inner" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:"16px"}}>
+          <div className="footer-inner" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:"16px",flexWrap:"wrap"}}>
             <span style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(14,12,9,0.4)",fontWeight:600}}>Broke Founders</span>
-            <span style={{fontFamily:"var(--font-sans)",fontSize:"12px",color:"rgba(14,12,9,0.4)",fontWeight:400}}>Broke builders. Real products. Shared upside.</span>
-            <a href="/login" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600,transition:"color 0.2s ease"}}
-              onMouseEnter={e=>(e.currentTarget.style.color="rgba(14,12,9,0.8)")}
-              onMouseLeave={e=>(e.currentTarget.style.color="rgba(14,12,9,0.35)")}>
-              Sign in →
-            </a>
-            <a href="/worth-building" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"11px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.45)",textDecoration:"none"}}>
-            Worth building
-            </a>
+            <div style={{display:"flex",gap:"20px",flexWrap:"wrap",alignItems:"center"}}>
+              <a href="/worth-building" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Worth building</a>
+              <a href="/fossils" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Archive</a>
+              <a href="/legal/terms" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Terms</a>
+              <a href="/legal/privacy" className="nav-link" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",fontWeight:500,color:"rgba(14,12,9,0.35)",textDecoration:"none"}}>Privacy</a>
+              <a href="/login" style={{fontFamily:"var(--font-sans)",fontSize:"10px",letterSpacing:"0.15em",textTransform:"uppercase",color:"rgba(14,12,9,0.35)",textDecoration:"none",fontWeight:600,transition:"color 0.2s ease"}}
+                onMouseEnter={e=>(e.currentTarget.style.color="rgba(14,12,9,0.8)")}
+                onMouseLeave={e=>(e.currentTarget.style.color="rgba(14,12,9,0.35)")}>
+                Sign in →
+              </a>
+            </div>
           </div>
         </footer>
 

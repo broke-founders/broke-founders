@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase"
 import { cookies } from "next/headers"
 import { logContribution } from "@/lib/contributions"
 import { transporter } from "@/lib/mailer"
+import { notify } from "@/lib/notify"
 
 export async function POST(
   _req: Request,
@@ -51,13 +52,21 @@ export async function POST(
 
   const memberMap = Object.fromEntries((members || []).map(m => [m.id, m]))
 
-  // Log seed_graduated contribution for everyone
+  // Log seed_graduated contribution + notify everyone
   for (const memberId of allMemberIds) {
     await logContribution({
       user_id: memberId,
       seed_id: seed.id,
       action: "seed_graduated",
       meta: { title: seed.title },
+    })
+
+    await notify({
+      user_id: memberId,
+      type: "seed_graduated",
+      title: `${seed.title} has graduated`,
+      body: "You shipped. Check your email for the full breakdown.",
+      link: `/seeds/${seed.slug}/graduated`,
     })
   }
 
